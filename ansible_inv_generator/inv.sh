@@ -13,8 +13,8 @@ else
 	done
 	sed -i '4d' custom_inv.ini
 	echo "[kube-cluster:children]" >> custom_inv.ini
-	echo "[master]" >> custom_inv.ini
-	echo "[node]" >> custom_inv.ini
+	echo "master" >> custom_inv.ini
+	echo "node" >> custom_inv.ini
 fi
 printf "✅ Custom inventory file create successfully for setting up k8s cluster.\n"
 echo " " 
