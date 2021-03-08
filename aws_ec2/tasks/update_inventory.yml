@@ -7,7 +7,7 @@
            dest: /tmp/
            mode: 0755
     - name: Generating inventory file
-      shell: "sh /tmp/inv.sh {{ item.master.public_ip }} {{ item.worker.public_ip }}"
-      loop:
-        - { master: "{{ master_info['instances'] }}" }
-        - { worker: "{{ worker_info['instances'] }}" }
+      shell: "sh /tmp/inv.sh {{ item.public_ip }} {{ item.public_ip }}"
+      with_items:
+        -  master_info.instances
+        -  worker_info.instances
