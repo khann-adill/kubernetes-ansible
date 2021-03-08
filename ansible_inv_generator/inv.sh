@@ -3,6 +3,7 @@
 if [[ $# -eq 0 ]]
 then
 	printf "❌ No hosts provided.\n"
+	exit 45
 else
 	echo "[master]" > custom_inv.ini
 	echo $1 >> custom_inv.ini
