@@ -1,0 +1,23 @@
+---
+- name: Launching Worker Node
+  ec2:
+    key_name: "{{ key_name.key.name }}"
+    instance_type: t2.micro
+    image: ami-08962a4068733a2b6
+    wait: true
+    group: "{{ sg_id.group_name }}"
+    count: 1
+    vpc_subnet_id: "{{ vpc_subid }}"
+    assign_public_ip: yes
+    region: us-east-2
+    user_data: |
+               #!/bin/bash
+               apt update -y
+               apt install curl -y
+               curl https://raw.githubusercontent.com/khann-adill/play-with-kubectl/master/kubernetes-installation/set-hostname-kworker.sh | bash
+    state: present
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    instance_tags:
+          Name: WorkerNode
+  register: worker_info

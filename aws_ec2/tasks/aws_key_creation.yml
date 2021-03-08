@@ -1,0 +1,11 @@
+---
+- name: Creating Key 
+  ec2_key:
+      name: aws
+      region: us-east-2
+      state: present
+      aws_access_key: "{{ access_key }}"
+      aws_secret_key: "{{ secret_key }}"
+      key_material: "{{ lookup('file', './id_rsa_aws.pub') }}"
+  register: key_name
+- debug: var=key_name.key.name

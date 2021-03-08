@@ -1,0 +1,14 @@
+---
+- debug: var=ansible_facts.python_version
+
+- name: Installing python
+  apt:
+    name: python
+    state: present
+    update_cache: yes
+  when: "'3' not in ansible_facts.python_version"
+
+- name: Installing boto3 library"
+  pip:
+    name: boto3
+    state: present

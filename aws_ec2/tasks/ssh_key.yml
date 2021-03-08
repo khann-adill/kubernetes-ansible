@@ -1,0 +1,9 @@
+---
+- name: Generating SSh key for AWS EC2
+  openssh_keypair:
+          path: ./id_rsa_aws
+          type: rsa
+          size: 2048
+          state: present
+          force: no
+  register: key_out

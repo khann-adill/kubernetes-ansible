@@ -1,0 +1,7 @@
+---
+- hosts: master
+  tasks:
+     - name: ls
+       shell: ls -ltr
+       register: out
+     - debug: var=out

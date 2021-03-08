@@ -1,0 +1,22 @@
+- name: "Add MasterNode to host group"
+  add_host:
+    hostname: "{{ item.public_ip }}"
+    groupname: master
+  loop: "{{ master_info['instances'] }}"
+- name: "Add WorkerNodes to host group"
+  add_host:
+    hostname: "{{ item.public_ip }}"
+    groupname: workers
+  loop: "{{ worker_info['instances'] }}"
+- name: "Waiting for SSH"
+  wait_for:
+    host: "{{ item.public_dns_name }}"
+    port: 22
+    state: started
+  loop: "{{ master_info['instances'] }}"
+- name: "Waiting for SSH"
+  wait_for:
+    host: "{{ item.public_dns_name }}"
+    port: 22
+    state: started
+  loop: "{{ worker_info['instances'] }}"

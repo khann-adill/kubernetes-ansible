@@ -1,0 +1,22 @@
+---
+- name: Installing AWS CLI
+  block:
+     - name: Getting AWS CLI  binary file
+       get_url:
+          url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+          dest: /tmp/awscliv2.zip
+          force_basic_auth: yes
+
+     - name: Unzipping it
+       unarchive:
+          src: /tmp/awscliv2.zip
+          dest: /tmp/
+          remote_src: yes
+
+- name: Getting VPC Subnet ID 
+  shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" /tmp/aws/dist/aws ec2 describe-subnets | grep SubnetId | head -1 | cut -d':' -f2 | sed 's/"//g' | sed 's/,//g' | sed -e 's/^[[:space:]]*//'
+  register: vpc_subid
+
+- set_fact:
+      vpc_subid: "{{ vpc_subid.stdout }}"
+
