@@ -10,5 +10,4 @@
     - include: getting_vpc_subnetid.yml
     - include: ec2-master.yml
     - include: ec2-worker.yml
-    - include: update_inventory.yml
     - include: ssh-check.yml 

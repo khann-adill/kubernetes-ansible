@@ -26,3 +26,12 @@
   set_fact:
       worker_ip: "{{ item.public_ip }}"
   loop: "{{ worker_info['instances'] }}"
+
+- name: Addinf WorkerNode to Inventory file
+  lineinfile:
+        line: "{{ item.public_ip }} "
+        dest: /etc/ansible/custom_inv.ini
+        insertafter: '\[worker\]'
+  loop: "{{ worker_info['instances'] }}"
+
+

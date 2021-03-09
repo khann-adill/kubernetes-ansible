@@ -26,4 +26,18 @@
   set_fact:
       master_ip: "{{ item.public_ip }}"
   loop: "{{ master_info['instances'] }}"
+  
+- name: Getting Inventory file.
+  template:
+     src: ../templates/custom_inv.j2
+     dest: /etc/ansible/custom_inv.ini 
+
+- name: Adding MasterNode to inventory file.
+  lineinfile:
+        line: "{{ item.public_ip }}"
+        dest: /etc/ansible/custom_inv.ini
+        insertafter: '\[master\]'
+  loop: "{{ master_info['instances'] }}"
+  register: line
+
 
