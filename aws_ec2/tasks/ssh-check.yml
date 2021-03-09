@@ -1,0 +1,16 @@
+---
+- name: SSH connection check for Master and Worker node.
+  block:
+    - name: "Waiting for MasterNode SSH"
+      wait_for:
+        host: "{{ master_ip }}"
+        port: 22
+        state: started
+    - name: "Waiting for WorkerNode SSH"
+      wait_for:
+        host: "{{ worker_ip }}"
+        port: 22
+        state: started
+  always:
+     - debug:
+          msg: "SSH connection success on both Node."

@@ -6,7 +6,7 @@
     image: ami-08962a4068733a2b6
     wait: true
     group: "{{ sg_id.group_name }}"
-    count: 1
+    count: 2
     vpc_subnet_id: "{{ vpc_subid }}"
     assign_public_ip: yes
     region: us-east-2
@@ -21,3 +21,8 @@
     instance_tags:
           Name: WorkerNode
   register: worker_info
+
+- name: "Setting  WorkerNodes Public IP as variable"
+  set_fact:
+      worker_ip: "{{ item.public_ip }}"
+  loop: "{{ worker_info['instances'] }}"

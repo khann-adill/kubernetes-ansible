@@ -1,13 +1,15 @@
 ---
 - name: Generating inventory file
   block:
-    - name: Downloading inventory generator script
-      get_url:
-           url: https://raw.githubusercontent.com/khann-adill/kubernetes-ansible/main/ansible_inv_generator/inv.sh
-           dest: /tmp/
-           mode: 0755
-    - name: Generating inventory file
-      shell: "sh /tmp/inv.sh {{ item.public_ip }} {{ item.public_ip }}"
-      with_items:
-        -  master_info.instances
-        -  worker_info.instances
+   - name: Downloading inventory generator script
+     get_url:
+         url: https://raw.githubusercontent.com/khann-adill/kubernetes-ansible/main/ansible_inv_generator/inv.sh
+         dest: /tmp/
+         mode: 0755
+   - name: Generating inventory file
+     shell: "sh /tmp/inv.sh {{ master_ip }} {{ worker_ip }} >/dev/null 2>&1"
+     args:
+      executable: /bin/bash
+  always:
+   - debug: 
+       msg: "Custom Inventory file has been succesfully created, :-)"

@@ -22,64 +22,8 @@
           Name: MasterNode
   register: master_info
 
-- name: Launching Worker Node
-  ec2:
-    key_name: "{{ key_name.key.name }}"
-    instance_type: t2.micro
-    image: ami-08962a4068733a2b6
-    wait: true
-    group: "{{ sg_id.group_name }}"
-    count: 1
-    vpc_subnet_id: "{{ vpc_subid }}"
-    assign_public_ip: yes
-    region: us-east-2
-    user_data: |
-               #!/bin/bash
-               apt update -y
-               apt install curl python -y
-               curl https://raw.githubusercontent.com/khann-adill/play-with-kubectl/master/kubernetes-installation/set-hostname-kworker.sh | bash
-    state: present
-    aws_access_key: "{{ access_key }}"
-    aws_secret_key: "{{ secret_key }}"
-    instance_tags:
-          Name: WorkerNode
-  register: worker_info
-
-- name: "Add MasterNode to host group"
+- name: "Setting MasterNode Public IP as variable"
   set_fact:
       master_ip: "{{ item.public_ip }}"
   loop: "{{ master_info['instances'] }}"
 
-- name: "Add WorkerNodes to host group"
-  set_fact:
-      worker_ip: "{{ item.public_ip }}"
-  loop: "{{ worker_info['instances'] }}"
-- debug: var=master_ip
-
-- debug: var=worker_ip
-
-- name: "Waiting for SSH"
-  wait_for:
-    host: "{{ item.public_dns_name }}"
-    port: 22
-    state: started
-  loop: "{{ master_info['instances'] }}"
-- name: "Waiting for SSH"
-  wait_for:
-    host: "{{ item.public_dns_name }}"
-    port: 22
-    state: started
-  loop: "{{ worker_info['instances'] }}"
-
-- name: Generating inventory file
-  block:
-    - name: Downloading inventory generator script
-      get_url:
-           url: https://raw.githubusercontent.com/khann-adill/kubernetes-ansible/main/ansible_inv_generator/inv.sh
-           dest: /tmp/
-           mode: 0755
-
-    - name: Generating inventory file
-      shell: "sh /tmp/inv.sh {{ master_ip }} {{ worker_ip }} >/dev/null 2>&1"
-      args:
-       executable: /bin/bash
