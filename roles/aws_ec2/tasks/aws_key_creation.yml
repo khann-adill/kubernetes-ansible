@@ -1,11 +1,12 @@
 ---
 - name: Creating Key 
   ec2_key:
-      name: aws
-      region: us-east-2
+      name: "{{ ec2.aws_key.name }}"
+      region: "{{ ec2.region }}"
       state: present
       aws_access_key: "{{ access_key }}"
       aws_secret_key: "{{ secret_key }}"
-      key_material: "{{ lookup('file', './id_rsa_aws.pub') }}"
+      #   key_material: "{{ lookup('file', './id_rsa_aws.pub') }}"
+      key_material: "{{ lookup('file', '{{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}.pub') }}"
   register: key_name
 - debug: var=key_name.key.name

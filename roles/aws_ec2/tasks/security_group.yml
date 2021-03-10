@@ -1,9 +1,9 @@
 ---
 - name: "Security Group for both Master and Worker Nodes"
   ec2_group:
-     name: MultiNodeCluster
+     name: "{{ ec2.security_group.group_name }}"
      description: "This SG allows allows all traffic"
-     region: us-east-2
+     region: "{{ ec2.region }}"
      aws_access_key: "{{ access_key }}"
      aws_secret_key: "{{ secret_key }}"
      rules:
@@ -12,7 +12,7 @@
      rules_egress:
      - proto: all
        cidr_ip: 0.0.0.0/0
-  register: sg_id
+  register: sgroup_name
 
-- debug: var=sg_id.group_name
+- debug: var=sgroup_name.group_name
 

@@ -1,9 +1,9 @@
 ---
 - name: Generating SSh key for AWS EC2
   openssh_keypair:
-          path: ./id_rsa_aws
-          type: rsa
-          size: 4096
-          state: present
-          force: yes
+       path: "{{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}"
+       type: "{{ ec2.ssh_key.algorithm }}"
+       size: "{{ ec2.ssh_key.size }}"
+       state: present
+       force: yes
   register: key_out
