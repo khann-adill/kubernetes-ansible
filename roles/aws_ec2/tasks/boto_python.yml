@@ -1,5 +1,6 @@
 ---
-
+- debug: var=ansible_facts.python_version
+- debug: var=ansible_os_family
 - name: Updating python
   apt:
     name: python

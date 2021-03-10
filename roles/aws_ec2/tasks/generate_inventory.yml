@@ -1,0 +1,5 @@
+---
+- name: Generating Inventory file
+  template:
+     src: ../templates/inv.j2
+     dest: /etc/ansible/inv.ini
