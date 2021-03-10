@@ -1,0 +1,71 @@
+---
+- debug: var=ansible_facts.python_version
+
+- name: Updating python
+  apt:
+    name: python
+    state: present
+    update_cache: yes
+  when: 
+    - "'3' not in ansible_facts.python_version"
+    - ansible_os_family == "Debian"
+
+- name: Updating python
+  yum:
+    name: python
+    state: present
+  when: 
+    - "'3' not in ansible_facts.python_version"
+    - ansible_os_family == "RedHat"
+
+- name: Checking Pip install or not
+  shell: python3 -m pip --version
+  register: pip
+  ignore_errors: true
+
+- name: installiig pip
+  apt:
+    name: python3-pip
+    state: present
+  when: 
+    - "'No' in pip.stderr"
+    - ansible_os_family == "Debian"
+
+- name: Installing boto3 library"
+  when: ansible_os_family == "Debian"
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+         - boto3
+         - boto
+
+- name: Installing boto3 library"
+  when: ansible_os_family == "RedHat"
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+         - boto3
+         - boto
+
+- name: Installing required packages for provisioning
+  apt: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+         - curl
+         - wget
+         - unzip
+  when: ansible_os_family == "Debian"
+
+- name: Installing required packages for provisioning
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items:
+         - curl
+         - wget
+         - unzip
+  when: ansible_os_family == "RedHat"
+

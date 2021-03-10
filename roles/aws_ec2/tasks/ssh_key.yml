@@ -3,7 +3,7 @@
   openssh_keypair:
           path: ./id_rsa_aws
           type: rsa
-          size: 2048
+          size: 4096
           state: present
-          force: no
+          force: yes
   register: key_out
