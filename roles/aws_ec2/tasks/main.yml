@@ -7,5 +7,5 @@
 - include: getting_vpc_subnetid.yml
 - include: ec2-master.yml
 - include: ec2-worker.yml
-- include generate_inventory.yml
+  #- include generate_inventory.yml
 - include: ssh-check.yml 

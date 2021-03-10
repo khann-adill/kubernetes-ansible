@@ -51,21 +51,19 @@
 
 - name: Installing required packages for provisioning
   apt: 
-    name: "{{ item }}"
+    name:
+      - curl
+      - wget
+      - unzip
     state: present
-  with_items:
-         - curl
-         - wget
-         - unzip
   when: ansible_os_family == "Debian"
 
 - name: Installing required packages for provisioning
   yum: 
-    name: "{{ item }}"
+    name: 
+      - curl
+      - wget
+      - unzip
     state: present
-  with_items:
-         - curl
-         - wget
-         - unzip
   when: ansible_os_family == "RedHat"
 
