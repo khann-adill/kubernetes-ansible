@@ -1,8 +1,8 @@
 ---
 ec2:
- vm_image: ami-042e8287309f5df03
- temp_dir: /tmp
  region: us-east-1
+ vm_image: ami-042e8287309f5df03 #this vm_image ID need to be change acc. to region you select.
+ temp_dir: /tmp
  security_group:
      group_name: MultiNodeCluster
  ssh_key:
