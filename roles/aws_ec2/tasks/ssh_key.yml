@@ -7,3 +7,8 @@
        state: present
        force: yes
   register: key_out
+
+- name: Setting SSH key permission
+  file: 
+   path: "{{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}"
+   mode: "{{ ec2.ssh_key.mode }}"

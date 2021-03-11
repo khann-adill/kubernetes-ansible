@@ -8,3 +8,4 @@
 - include: ec2-master.yml
 - include: ec2-worker.yml
 - include: ssh-check.yml 
+- include: refresh_inventory.yml

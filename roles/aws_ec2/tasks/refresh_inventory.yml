@@ -1,0 +1,7 @@
+---
+- name: refreshing inventory
+  meta: refresh_inventory
+
+- name: Wait for 1 mins
+  pause:
+     minutes: 1

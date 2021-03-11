@@ -1,4 +1,9 @@
 ---
 - hosts: localhost
   roles:
-   - aws_ec2 
+  - aws_ec2 
+
+- hosts: master
+  gather_facts: false
+  roles: 
+    - master

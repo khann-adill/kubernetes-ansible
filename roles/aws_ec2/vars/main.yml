@@ -10,6 +10,7 @@ ec2:
      key_name: id_rsa_aws
      algorithm: rsa
      size: 4096
+     mode: 0400
  aws_key:
      name: aws
  aws_cli:

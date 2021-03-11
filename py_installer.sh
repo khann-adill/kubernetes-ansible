@@ -7,6 +7,7 @@ then
         sudo apt-get update -y >/dev/null 2>&1 && sudo apt-get install python3 -y >/dev/null 2>&1
         echo "[❗️ Installing Ansible ]"
         sudo apt-get install ansible -y >/dev/null 2>&1
+
 elif [[ $os_name == "CentOS" ]]
 then
         sudo yum update && sudo yum install python3 >/dev/null 2>&1
