@@ -3,18 +3,18 @@
   block:
      - name: Getting AWS CLI  binary file
        get_url:
-          url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-          dest: /tmp/awscliv2.zip
+          url: "{{ ec2.aws_cli.cli_url }}" 
+          dest: "{{ ec2.temp_dir }}/awscli.zip"
           force_basic_auth: yes
 
      - name: Unzipping it
        unarchive:
-          src: /tmp/awscliv2.zip
-          dest: /tmp/
+          src: "{{ ec2.temp_dir }}/awscli.zip"
+          dest: "{{ ec2.temp_dir }}"
           remote_src: yes
 
 - name: Getting VPC Subnet ID 
-  shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" /tmp/aws/dist/aws ec2 describe-subnets | grep SubnetId | head -1 | cut -d':' -f2 | sed 's/"//g' | sed 's/,//g' | sed -e 's/^[[:space:]]*//'
+  shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" "{{ ec2.temp_dir }}"/aws/dist/aws ec2 describe-subnets --region "{{ ec2.region }}" | grep SubnetId | head -1 | cut -d':' -f2 | sed 's/"//g' | sed 's/,//g' | sed -e 's/^[[:space:]]*//'
   register: vpc_subid
 
 - set_fact:

@@ -1,2 +1,45 @@
 ---
-# vars file for aws_ec2
+ec2:
+ vm_image: ami-042e8287309f5df03
+ temp_dir: /tmp
+ region: us-east-1
+ security_group:
+     group_name: MultiNodeCluster
+ ssh_key:
+     key_path: /etc/ansible
+     key_name: id_rsa_aws
+     algorithm: rsa
+     size: 4096
+ aws_key:
+     name: aws
+ aws_cli:
+     cli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+ master:
+    vm_type: t2.micro
+    vm_count: 1
+    vm_protection: no
+    vm_state: present
+    vm_tag: MasterNode
+    need_to_wait: yes
+    need_public_ip: yes
+    volume:
+      volume_device_name: /dev/sda1 
+      volume_type: gp2
+      volume_size: 12
+      volume_termination: true
+worker:
+    vm_type: t2.micro
+    vm_count: 1
+    vm_protection: no
+    vm_state: present
+    vm_tag: MasterNode
+    need_to_wait: yes
+    need_public_ip: yes
+    volume:
+      volume_device_name: /dev/sda1 
+      volume_type: gp2
+      volume_size: 10
+      volume_termination: true
+inventory:
+    inv_location: /etc/ansible
+    inv_name: custom_inv.ini

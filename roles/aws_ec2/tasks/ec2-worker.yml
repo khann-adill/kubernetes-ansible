@@ -3,7 +3,7 @@
   ec2:
     key_name: "{{ key_name.key.name }}"
     instance_type: t2.micro
-    image: ami-08962a4068733a2b6
+    image: "{{ ec2.vm_image }}"
     wait: true
     group: "{{ sg_id.group_name }}"
     count: 2
@@ -18,6 +18,11 @@
     state: present
     aws_access_key: "{{ access_key }}"
     aws_secret_key: "{{ secret_key }}"
+    volumes:
+        - device_name: "{{ ec2.master.volume.volume_device_name }}"
+          volume_type: "{{ ec2.master.volume.volume_type }}"
+          volume_size: "{{ ec2.master.volume.volume_size }}"
+          delete_on_termination: "{{ ec2.master.volume.volume_termination }}"
     instance_tags:
           Name: WorkerNode
   register: worker_info
