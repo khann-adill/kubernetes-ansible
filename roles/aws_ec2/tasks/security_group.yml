@@ -13,6 +13,3 @@
      - proto: all
        cidr_ip: 0.0.0.0/0
   register: sgroup_name
-
-- debug: var=sgroup_name.group_name
-

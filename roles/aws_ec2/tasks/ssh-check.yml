@@ -13,4 +13,4 @@
         state: started
   always:
      - debug:
-          msg: "SSH connection success on both Node."
+          msg: "SSH connection success on both Node. Ready for k8s setup"

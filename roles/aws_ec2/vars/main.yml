@@ -27,12 +27,12 @@ ec2:
       volume_type: gp2
       volume_size: 12
       volume_termination: true
-worker:
+ worker:
     vm_type: t2.micro
     vm_count: 1
     vm_protection: no
     vm_state: present
-    vm_tag: MasterNode
+    vm_tag: WorkerNode
     need_to_wait: yes
     need_public_ip: yes
     volume:
