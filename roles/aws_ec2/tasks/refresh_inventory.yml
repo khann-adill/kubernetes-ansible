@@ -1,7 +1,12 @@
 ---
-- name: refreshing inventory
+- name: Refreshing Ansible Inventory to Pick up the latest Hosts
   meta: refresh_inventory
 
-- name: Wait for 1 mins
+- name: Relax..!! Need to wait 30 Secs coz Inventory is Refreshing
   pause:
-     minutes: 1
+     seconds: 30
+
+- name: Running Script for making Connection for first time
+  script: ../files/make_connection.sh "{{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}" 
+  args:
+    executable: /bin/bash
