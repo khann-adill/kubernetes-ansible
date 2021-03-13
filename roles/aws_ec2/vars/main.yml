@@ -1,7 +1,11 @@
 ---
 ec2:
- region: us-east-1
- vm_image: ami-042e8287309f5df03
+ region: us-west-1
+ vm_image: 
+   us-east-1: ami-042e8287309f5df03
+   us-east-2: ami-08962a4068733a2b6
+   us-west-1: ami-031b673f443c2172c
+   us-west-2: ami-0ca5c3bd5a268e7db
  temp_dir: /tmp
  security_group:
      group_name: MultiNodeCluster

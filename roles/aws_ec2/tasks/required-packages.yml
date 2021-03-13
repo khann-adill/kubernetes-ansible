@@ -3,6 +3,7 @@
   shell: python3 -m pip --version
   register: pip
   ignore_errors: true
+  changed_when: False
 
 - name: Installing PIP
   apt:
@@ -46,4 +47,3 @@
       - unzip
     state: present
   when: ansible_os_family == "RedHat"
-

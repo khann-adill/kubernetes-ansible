@@ -3,7 +3,7 @@
   ec2:
     key_name: "{{ ec2.aws_key.name }}"
     instance_type: "{{ ec2.master.vm_type }}"
-    image: "{{ ec2.vm_image }}"
+    image: "{{ ec2.vm_image[ec2.region] }}"
     wait: "{{ ec2.master.need_to_wait }}"
     group: "{{ ec2.security_group.group_name }}"
     count: "{{ ec2.master.vm_count }}"

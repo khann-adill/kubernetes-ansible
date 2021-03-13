@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: Ensuring python3 is installed
-      shell: python3 -V
-      register: py_version
-    - debug: var=py_version.stdout
