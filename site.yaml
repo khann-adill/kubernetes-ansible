@@ -1,9 +1,9 @@
 ---
-#- hosts: kube_cluster
-# gather_facts: yes
-# become: yes
-# roles:
-#   - { role: docker, tags: docker }
+- hosts: kube-cluster
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: docker, tags: docker }
 
 - hosts: master
   gather_facts: yes
@@ -12,7 +12,7 @@
     - { role: kubernetes/master, tags: master }
     - { role: cni, tags: cni }
 
-- hosts: worker
+- hosts: node
   gather_facts: yes
   become: yes
   roles:

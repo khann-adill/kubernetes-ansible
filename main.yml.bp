@@ -1,9 +1,13 @@
 ---
-#- hosts: kube_cluster
-# gather_facts: yes
-# become: yes
-# roles:
-#   - { role: docker, tags: docker }
+- hosts: localhost
+  roles:
+  - aws_ec2 
+
+- hosts: kube_cluster
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: docker, tags: docker }
 
 - hosts: master
   gather_facts: yes
