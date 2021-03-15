@@ -1,13 +1,16 @@
 ---
+
 - name: Create Kubernetes addon directory
-  file: 
-     path: "{{ network_dir }}"
-     state: directory
+  file:
+    path: "{{ network_dir }}"
+    state: directory
 
 - name: "Copy {{ network }} YAML files"
   template:
-       src: "{{ network }}.yml.j2"
-       dest: "{{ network_dir }}/{{ network }}.yml"
+    src: "{{ item }}"
+    dest: "{{ network_dir }}/{{ item | basename | regex_replace('\\.j2','') }}"
+  with_fileglob:
+    - ../templates/{{ network }}*.j2
 
 - name: "Check {{ network }} daemonset is working"
   shell: kubectl --kubeconfig={{ kubeadmin_config }} get ds --all-namespaces | grep {{ network }}
