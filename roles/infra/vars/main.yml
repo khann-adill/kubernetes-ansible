@@ -37,7 +37,7 @@ ec2:
  aws_cli:
      cli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
  master:
-    vm_type: t2.medium
+    vm_type: t2.micro
     vm_count: 1
     vm_protection: no
     vm_state: present
@@ -50,8 +50,8 @@ ec2:
       volume_size: 12
       volume_termination: true
  worker:
-    vm_type: t2.medium
-    vm_count: 1
+    vm_type: t2.micro
+    vm_count: 3
     vm_protection: no
     vm_state: present
     vm_tag: WorkerNode

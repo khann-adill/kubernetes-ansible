@@ -1,0 +1,3 @@
+---
+- name: Refreshing Ansible Inventory to Pick up the latest Hosts
+  meta: refresh_inventory
