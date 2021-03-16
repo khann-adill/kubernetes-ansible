@@ -48,3 +48,8 @@ tmp_dir: /opt/k8s
 
 #Supported container_runtime: [ docker containerd ]
 container_runtime: containerd
+
+k8s_config:
+    path: /root
+    user: root
+    group: root
