@@ -1,4 +1,9 @@
 ---
+- name: Installing HTTP over TLS
+  apt: 
+    name: apt-transport-https
+    state: present
+    
 - name: Configure module for containerd
   copy:
    src: containerd.conf
@@ -13,11 +18,6 @@
 
 - name: Apply sysctl params without reboot
   command: sysctl --system
-
-- name: Installing Prerequisites for Kubernetes
-  apt: 
-    name: apt-transport-https
-    state: present
 
 - name: Adding Docker APT GPG key (Debian/Ubuntu)
   apt_key:
@@ -44,7 +44,6 @@
 
 - name: Configure containerd
   shell: /usr/bin/containerd config default > /etc/containerd/config.toml
-
 
 - name: Enable containerd service, and start it
   systemd:
