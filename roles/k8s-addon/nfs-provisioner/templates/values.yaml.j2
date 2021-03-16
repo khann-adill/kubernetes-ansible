@@ -1,0 +1,10 @@
+storage_class_name: managed-nfs-storage
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+nfs_deploy_name: nfs-client-provisioner
+saName: nfs-client-provisioner
+nfs_deploy_image: quay.io/external_storage/nfs-client-provisioner:latest
+vol_name: nfs-client-root
+nfs_server: {{ groups['master'][0] }}
+path: {{ nfs.dir }}
+provisioner: example.com/nfs

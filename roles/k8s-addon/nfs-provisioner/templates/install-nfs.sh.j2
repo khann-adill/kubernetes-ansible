@@ -1,0 +1,21 @@
+############################################################# PLAY WITH KUBECTL #############################################################################
+#       Installation of nfs and setting /nfs-private in /etc/exports
+#       system compatible: Ubuntu:18.04.5 LTS (Bionic Beaver) and 20.04.1 LTS (Focal Fossa).     
+#       Maintainer: Adil Abdullah Khan  
+#       To Run this script:
+#       curl  https://raw.githubusercontent.com/adil1806/play-with-kubectl/master/kubernetes-installation/Install-nfs.sh | bash
+#############################################################################################################################################################
+#!/bin/bash
+
+
+## NFS Folders
+echo "[TASK 1] Creating/Adjusting Folder {{ nfs.dir }} and editing /etc/exports ..."
+
+mkdir "{{ nfs.dir }}" >/dev/null 2>&1
+chmod -R 755 "{{ nfs.dir }}" >/dev/null 2>&1
+chown nobody:nogroup "{{ nfs.dir }}"
+echo "{{ nfs.dir }} *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
+
+## Restart Services
+echo "[TASK 2] Restarting Services ..."
+service nfs-kernel-server restart >/dev/null 2>&1

@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ .Values.nfs_deploy_name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-client-provisioner
+          image: {{ .Values.nfs_deploy_image }}
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: {{ .Values.provisioner }}
+            - name: NFS_SERVER
+              value: {{ .Values.nfs_server }}
+            - name: NFS_PATH
+              value: {{ .Values.path }}
+      volumes:
+        - name: {{ .Values.vol_name }}
+          nfs:
+            server: {{ .Values.nfs_server }}
+            path: {{ .Values.path }}

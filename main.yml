@@ -31,3 +31,9 @@
            name: k8s-addon/dashboard
       when: enable_dashboard | bool
       run_once: yes
+
+    - name: "nfs"
+      include_role:
+           name: k8s-addon/nfs-provisioner
+      when: additional_features.nfs_dynamic | bool
+      run_once: yes
