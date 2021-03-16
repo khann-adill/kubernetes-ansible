@@ -15,7 +15,8 @@
        shell: |
              kubeadm join --token {{ token }} \
                 --discovery-token-unsafe-skip-ca-verification \
-                {{ groups['master'][0] }}:6443
+                {{ groups['master'][0] }}:6443 \
+                --ignore-preflight-errors=all
        register: join_cluster
        notify:
           - Recreate kube-dns

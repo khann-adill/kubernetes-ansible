@@ -45,4 +45,5 @@ additional_features:
 tmp_dir: /tmp/kubeadm-ansible-files
 
 
-container_runtime: docker
+#container_runtime: [ docker containerd ]
+container_runtime: containerd
