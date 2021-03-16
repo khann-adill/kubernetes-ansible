@@ -1,0 +1,67 @@
+---
+ec2:
+ region: eu-west-1
+ vm_image: 
+   us-east-1: ami-042e8287309f5df03
+   us-east-2: ami-08962a4068733a2b6
+   us-west-1: ami-031b673f443c2172c
+   us-west-2: ami-0ca5c3bd5a268e7db
+   ap-east-1: ami-036915aa0cb1d91a1
+   ap-south-1: ami-0d758c1134823146a
+   ap-northeast-1: ami-059b6d3840b03d6dd
+   ap-northeast-2: ami-00f1068284b9eca92
+   ap-northeast-3: ami-01ecbd21b1e9b987f
+   ap-southeast-1: ami-01581ffba3821cdf3
+   ap-southeast-2: ami-0a43280cfb87ffdba
+   ca-central-1: ami-043e33039f1a50a56
+   eu-cental-a: ami-0767046d1677be5a0
+   eu-west-1: ami-08bac620dc84221eb
+   eu-west-2: ami-096cb92bb3580c759
+   eu-west-3: ami-0d6aecf0f0425f42a
+   eu-south-1: ami-08a7e27b95390cc06
+   eu-north-1: ami-0ed17ff3d78e74700
+   me-south-1: ami-07d42d0c2a45aa449
+   sa-east-1: ami-0b9517e2052e8be7a
+   af-south-1: ami-0081edcfb10f9f0d6
+ temp_dir: /tmp
+ security_group:
+     group_name: MultiNodeCluster
+ ssh_key:
+     key_path: /etc/ansible
+     key_name: id_rsa_aws
+     algorithm: rsa
+     size: 4096
+     mode: 400
+ aws_key:
+     name: aws
+ aws_cli:
+     cli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+ master:
+    vm_type: t2.medium
+    vm_count: 1
+    vm_protection: no
+    vm_state: present
+    vm_tag: MasterNode
+    need_to_wait: yes
+    need_public_ip: yes
+    volume:
+      volume_device_name: /dev/sda1 
+      volume_type: gp2
+      volume_size: 12
+      volume_termination: true
+ worker:
+    vm_type: t2.micro
+    vm_count: 1
+    vm_protection: no
+    vm_state: present
+    vm_tag: WorkerNode
+    need_to_wait: yes
+    need_public_ip: yes
+    volume:
+      volume_device_name: /dev/sda1 
+      volume_type: gp2
+      volume_size: 10
+      volume_termination: true
+inventory:
+    inv_location: /etc/ansible
+    inv_name: custom_inv.ini

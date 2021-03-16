@@ -1,0 +1,53 @@
+---
+- name: Check if kubeadm has already run
+  stat:
+    path: "/etc/kubernetes/pki/ca.key"
+  register: kubeadm_ca
+
+- name: Init cluster if needed
+  block:
+    - name: Reset Kubernetes component
+      shell: "kubeadm reset --force"
+      register: reset_cluster
+
+    - name: Init Kubernetes cluster
+      shell: |
+            kubeadm init --kubernetes-version {{ kube_version }} \
+                 --pod-network-cidr {{ pod_network_cidr }} \
+                 --token {{ token }} \
+                 --token-ttl 0 \
+                 --ignore-preflight-errors=all
+      when: reset_cluster is succeeded
+      register: init_cluster
+
+    - name: Create Kubernetes config directory
+      file:
+        path: ".kube/"
+        state: directory
+
+    - name: Copy admin.conf to Home directory
+      copy:
+        src: "{{ kubeadmin_config }}"
+        dest: ".kube/config"
+        owner: "{{ ansible_user | default(ansible_user_id) }}"
+        group: "{{ ansible_user | default(ansible_user_id) }}"
+        mode: 0755
+        remote_src: true
+      when: init_cluster is succeeded
+  when: not kubeadm_ca.stat.exists
+  run_once: yes
+
+- name: Enable and check kubelet service
+  service:
+      name: kubelet
+      state: started
+      enabled: yes
+  register: started_kubelet
+
+- name: "Copy config file"
+  fetch:
+     src: /etc/kubernetes/admin.conf 
+     dest: "{{ lookup('env', 'HOME') }}/admin.conf"
+     flat: yes
+  run_once: yes
+  ignore_errors: yes

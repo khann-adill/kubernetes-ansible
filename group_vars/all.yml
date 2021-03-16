@@ -17,7 +17,7 @@ service_cidr: "10.96.0.0/12"
 pod_network_cidr: "10.244.0.0/16"
 
 # Network implementation('flannel', 'calico', 'canal')
-network: calico
+network: flannel
 
 # Change this to an appropriate interface, preferably a private network.
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
@@ -44,3 +44,6 @@ additional_features:
 # temporary directory used by additional features
 tmp_dir: /tmp/kubeadm-ansible-files
 
+
+#container_runtime: [ docker containerd ]
+container_runtime: containerd
