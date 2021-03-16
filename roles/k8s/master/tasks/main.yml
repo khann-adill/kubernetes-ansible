@@ -22,15 +22,17 @@
 
     - name: Create Kubernetes config directory
       file:
-        path: ".kube/"
+        path: "{{ k8s_config.path }}/.kube/"
         state: directory
 
     - name: Copy admin.conf to Home directory
       copy:
         src: "{{ kubeadmin_config }}"
-        dest: ".kube/config"
-        owner: "{{ ansible_user | default(ansible_user_id) }}"
-        group: "{{ ansible_user | default(ansible_user_id) }}"
+        dest: "{{ k8s_config.path }}/.kube/config"
+        #owner: "{{ ansible_user | default(ansible_user_id) }}"
+        owner: "{{ k8s_config.user }}"
+        #group: "{{ ansible_user | default(ansible_user_id) }}"
+        group: "{{ k8s_config.group }}"
         mode: 0755
         remote_src: true
       when: init_cluster is succeeded
@@ -44,7 +46,7 @@
       enabled: yes
   register: started_kubelet
 
-- name: "Copy config file"
+- name: "Copy config file to local"
   fetch:
      src: /etc/kubernetes/admin.conf 
      dest: "{{ lookup('env', 'HOME') }}/admin.conf"

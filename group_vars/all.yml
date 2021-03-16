@@ -24,6 +24,7 @@ network: flannel
 network_interface: ""
 
 enable_dashboard: yes
+need_to_save_dashboard_token: no
 
 # A list of insecure registries you might need to define
 # insecure_registries: []

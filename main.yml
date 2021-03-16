@@ -22,6 +22,12 @@
   tasks:
     - name: "Helm role"
       include_role:
-            name: helm
+            name: k8s-addon/helm
       when: additional_features.helm | bool
       run_once: yes 
+
+    - name: "Dashboard"
+      include_role:
+           name: k8s-addon/dashboard
+      when: enable_dashboard | bool
+      run_once: yes
