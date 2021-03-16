@@ -16,7 +16,7 @@ kubeadm_opts: ""
 service_cidr: "10.96.0.0/12"
 pod_network_cidr: "10.244.0.0/16"
 
-# Network implementation('flannel', 'calico', 'canal')
+# Supported Network implementation('flannel', 'calico', 'canal')
 network: flannel
 
 # Change this to an appropriate interface, preferably a private network.
@@ -46,5 +46,5 @@ additional_features:
 tmp_dir: /opt/k8s
 
 
-#container_runtime: [ docker containerd ]
+#Supported container_runtime: [ docker containerd ]
 container_runtime: containerd
