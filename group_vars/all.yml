@@ -54,3 +54,6 @@ k8s_config:
     path: /root
     user: root
     group: root
+
+nfs:
+  dir: /nfs-private
