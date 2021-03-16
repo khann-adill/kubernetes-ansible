@@ -5,7 +5,6 @@
      state: present
   when: ansible_os_family == "Debian"
 
-
 - name: Add Kubernetes APT repository (Debian/Ubuntu)
   apt_repository:
        repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
@@ -23,6 +22,12 @@
 
 - name: Disable system swap
   shell: "swapoff -a"
+  
+- name: Remove swap entry from /etc/fstab
+  lineinfile:
+     dest: /etc/fstab
+     regexp: swap
+     state: absent
 
 - include_tasks: docker.yml
   when: container_runtime == "docker"
