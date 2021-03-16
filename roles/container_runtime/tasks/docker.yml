@@ -1,0 +1,45 @@
+---
+- name: Install apt-transport-https (Debian/Ubuntu)
+  apt:
+    name: "apt-transport-https"
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Adding Docker APT GPG key (Debian/Ubuntu)
+  apt_key:
+     url: https://download.docker.com/linux/ubuntu/gpg
+     state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add docker APT repository (Debian/Ubuntu)
+  apt_repository:
+       repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+       state: present
+       filename: 'docker'
+  when: ansible_os_family == "Debian"
+ 
+- name: Install docker engine (Debian/Ubuntu)
+  apt:
+   update_cache: yes
+   name: "docker.io"
+   state: present
+  when: ansible_os_family == "Debian"
+ 
+- name: Adding Docker environment config file
+  template:
+       src: docker.j2
+       dest: "{{ system_env_dir }}/docker"
+
+- name: Add any insecure registries to Docker config file
+  lineinfile: 
+     dest: "{{ system_env_dir }}/docker" 
+     regexp: "^INSECURE_REGISTRY=" 
+     line: INSECURE_REGISTRY="{% for reg in insecure_registries %}--insecure-registry={{ reg }} {% endfor %}"
+  when: insecure_registries is defined and insecure_registries | length > 0
+
+- name: Enable and check Docker service
+  service:
+     name: docker
+     enabled: yes
+     state: started

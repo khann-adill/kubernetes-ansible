@@ -1,0 +1,40 @@
+---
+- name: "Create checkout directory"
+  file:
+    path: "{{ tmp_dir }}"
+    state: directory
+    mode: 0755
+
+- block:
+    - name: "Check if Helm is installed"
+      shell: command -v helm >/dev/null 2>&1
+      register: helm_exists
+       #  ignore_errors: yes
+  rescue:
+    - name: Install Helm | Get Helm installer
+      get_url:
+        url: "https://raw.githubusercontent.com/helm/helm/master/scripts/get"
+        dest: "{{ tmp_dir }}/get_helm.sh"
+        mode: 0755
+      when: helm_exists.rc > 0
+
+    - name: "Run the installer"
+      shell: "{{ tmp_dir }}/get_helm.sh"
+      when: helm_exists.rc > 0
+
+- name: "Copy yaml file"
+  copy:
+    src: "rbac-config.yml"
+    dest: "{{ tmp_dir }}/rbac-config.yml"
+    mode: 0644
+
+- name: "RBAC configuration"
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ tmp_dir }}/rbac-config.yml"
+
+- name: "Init Helm"
+  shell: "helm init --service-account tiller --kubeconfig {{ kubeadmin_config }}"
+
+- name: "Update Helm repo"
+  shell: "helm repo update"
+
+  
