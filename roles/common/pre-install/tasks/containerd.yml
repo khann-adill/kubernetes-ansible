@@ -1,8 +1,10 @@
 ---
-- name: Installing HTTP over TLS
-  apt: 
-    name: apt-transport-https
+- name: Install apt-transport-https (Debian/Ubuntu)
+  apt:
+    name: "apt-transport-https"
     state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
     
 - name: Configure module for containerd
   copy:
