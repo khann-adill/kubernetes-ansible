@@ -1,5 +1,18 @@
 ---
 - hosts: localhost
   roles:
-  - infra
+    - { role: infra }
+
+- hosts: master
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: k8s/master }
+    - { role: cni }
+
+- hosts: worker
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: k8s/worker }
 

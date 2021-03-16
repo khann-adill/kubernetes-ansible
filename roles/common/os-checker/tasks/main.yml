@@ -1,4 +1,6 @@
 ---
+# Fact os vars
+
 - name: Get os_version from /etc/os-release
   when: ansible_os_family is not defined
   raw: "grep '^VERSION_ID=' /etc/os-release | sed s'/VERSION_ID=//'"
