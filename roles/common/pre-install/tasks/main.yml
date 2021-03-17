@@ -14,9 +14,9 @@
 
 - name: Install kubernetes packages (Debian/Ubuntu)
   apt:
-    name: "{{ packages }}"
+    name: "{{ item }}-{{ kube_version | replace('v', '') }}"
     update_cache: yes
-    state: present
+    state: installed
   with_items: "{{ packages }}"
   when: ansible_os_family == "Debian"
 
