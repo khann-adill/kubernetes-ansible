@@ -41,7 +41,7 @@ additional_features:
   helm: false
   metallb: false
   healthcheck: false
-  nfs_dynamic: false
+  nfs_dynamic: true
 
 # temporary directory used by additional features
 #tmp_dir: /tmp/kubeadm-ansible-files
@@ -49,7 +49,7 @@ tmp_dir: /opt/k8s
 
 
 #Supported container_runtime: [ docker containerd ]
-container_runtime: containerd
+container_runtime: docker
 
 k8s_config:
     path: /root

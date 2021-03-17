@@ -5,33 +5,33 @@
     state: directory
     mode: 0755
   with_items:
-      - "{{ tmp_dir }}"
-      - "{{ tmp_dir }}/nfs-dynamic/"
+      - "{{ kube_addon_dir }}"
+      - "{{ kube_addon_dir }}/nfs-dynamic/"
 
 - name: "Copy NFS setup file"
   template:
      src: install-nfs.sh.j2
-     dest: "{{ tmp_dir }}/install-nfs.sh"
+     dest: "{{ kube_addon_dir }}/install-nfs.sh"
      mode: 0755
 
 - name: Setting up NFS server
-  shell: sh "{{ tmp_dir }}/install-nfs.sh"
+  shell: sh "{{ kube_addon_dir }}/install-nfs.sh"
 
 - name: Copy NFS Helm Chart
   copy:
     src: nfs-dynamic/
-    dest: "{{ tmp_dir }}/nfs-dynamic/"
+    dest: "{{ kube_addon_dir }}/nfs-dynamic/"
     mode: 0755
     remote_src: no
 
 - name: copying Value.yml file for helm
   template:
       src: values.yaml.j2
-      dest: "{{ tmp_dir }}/nfs-dynamic/values.yaml"
+      dest: "{{ kube_addon_dir }}/nfs-dynamic/values.yaml"
       mode: 0755
 
 - name: Deploying NFS via. helm 
   shell: helm install --name nfs-dyamic . --kubeconfig "{{ kubeadmin_config }}"
   args:
-    chdir: "{{ tmp_dir }}/nfs-dynamic/"
+    chdir: "{{ kube_addon_dir }}/nfs-dynamic/"
 

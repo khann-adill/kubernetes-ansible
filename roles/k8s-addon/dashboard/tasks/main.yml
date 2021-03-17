@@ -1,26 +1,28 @@
 ---
 - name: "Create checkout directory"
   file:
-    path: "{{ tmp_dir }}"
+    path: "{{ kube_addon_dir }}"
     state: directory
     mode: 0755
 
 - name: "Copy Dashboard Manifest File"
   copy:
    src: dashboard.yml
-   dest: "{{ tmp_dir }}/dashboard.yml"
+   dest: "{{ kube_addon_dir }}/dashboard.yml"
 
 - name: "Deploying Dasboard Manifest File"
-  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ tmp_dir }}/dashboard.yml"
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/dashboard.yml"
 
 - name: "Getting Token for Dashboard to login"
-  shell: kubectl --kubeconfig={{ kubeadmin_config }} describe -n kube-system secrets $(kubectl --kubeconfig={{ kubeadmin_config }} describe sa -n kube-system $(kubectl --kubeconfig={{ kubeadmin_config }} get sa -n kube-system | grep dashboard | cut -d' ' -f1) | grep Token | cut -d ':' -f2) | grep '^token' | cut -d':' -f2 | tr -d " \t\n\r"
+  shell: |
+        kubectl --kubeconfig={{ kubeadmin_config }} describe -n kube-system secrets $(kubectl --kubeconfig={{ kubeadmin_config }} describe sa -n kube-system $(kubectl --kubeconfig={{ kubeadmin_config }} get sa -n kube-system | grep dashboard | cut -d' ' -f1) | grep Token | cut -d ':' -f2) | grep '^token' | cut -d':' -f2 | tr -d " \t\n\r"
   register: token
 
 - debug:
    msg: "HERE IS YOUR ADMIN DASHBOARD TOKEN: {{ token.stdout }}"
 
-- name: "Saving Dashboard Token for login in {{ tmp_dir }}/dashboard-token.yml file"
-  shell: kubectl --kubeconfig={{ kubeadmin_config }} describe -n kube-system secrets $(kubectl --kubeconfig={{ kubeadmin_config }} describe sa -n kube-system $(kubectl --kubeconfig={{ kubeadmin_config }} get sa -n kube-system | grep dashboard | cut -d' ' -f1) | grep Token | cut -d ':' -f2) | grep '^token' | cut -d':' -f2 | tr -d " \t\n\r" > {{ tmp_dir }}/dashboard-token.yml
+- name: "Saving Dashboard Token for login in {{ kube_addon_dir }}/dashboard-token.yml file"
+  shell: |
+       kubectl --kubeconfig={{ kubeadmin_config }} describe -n kube-system secrets $(kubectl --kubeconfig={{ kubeadmin_config }} describe sa -n kube-system $(kubectl --kubeconfig={{ kubeadmin_config }} get sa -n kube-system | grep dashboard | cut -d' ' -f1) | grep Token | cut -d ':' -f2) | grep '^token' | cut -d':' -f2 | tr -d " \t\n\r" > {{ kube_addon_dir }}/dashboard-token.yml
   register: token
   when: need_to_save_dashboard_token | bool 

@@ -1,7 +1,7 @@
 ---
 - name: "Create checkout directory"
   file:
-    path: "{{ tmp_dir }}"
+    path: "{{ kube_addon_dir }}"
     state: directory
     mode: 0755
 
@@ -14,22 +14,22 @@
     - name: Install Helm | Get Helm installer
       get_url:
         url: "https://raw.githubusercontent.com/helm/helm/master/scripts/get"
-        dest: "{{ tmp_dir }}/get_helm.sh"
+        dest: "{{ kube_addon_dir }}/get_helm.sh"
         mode: 0755
       when: helm_exists.rc > 0
 
     - name: "Run the installer"
-      shell: "{{ tmp_dir }}/get_helm.sh"
+      shell: "{{ kube_addon_dir }}/get_helm.sh"
       when: helm_exists.rc > 0
 
 - name: "Copy yaml file"
   copy:
     src: "rbac-config.yml"
-    dest: "{{ tmp_dir }}/rbac-config.yml"
+    dest: "{{ kube_addon_dir }}/rbac-config.yml"
     mode: 0644
 
 - name: "RBAC configuration"
-  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ tmp_dir }}/rbac-config.yml"
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/rbac-config.yml"
 
 - name: "Init Helm"
   shell: "helm init --service-account tiller --kubeconfig {{ kubeadmin_config }}"

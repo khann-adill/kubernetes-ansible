@@ -1,3 +1,0 @@
----
-dependencies:
-      - { role: common/pre-install, packages: ["kubelet", "kubeadm", "kubectl" ] }
