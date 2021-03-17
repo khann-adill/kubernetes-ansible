@@ -9,7 +9,14 @@
 
 
 ## NFS Folders
-echo "[TASK 1] Creating/Adjusting Folder {{ nfs.dir }} and editing /etc/exports ..."
+echo "[TASK 1] Installing all updates, this may take a few minutes ..."
+apt-get update -y >/dev/null 2>&1
+
+## Install NFS
+echo "[TASK 2] Installing NFS ..."
+apt-get install nfs-kernel-server -y >/dev/null 2>&1
+
+echo "[TASK 3] Creating/Adjusting Folder {{ nfs.dir }} and editing /etc/exports ..."
 
 mkdir "{{ nfs.dir }}" >/dev/null 2>&1
 chmod -R 755 "{{ nfs.dir }}" >/dev/null 2>&1
@@ -17,5 +24,5 @@ chown nobody:nogroup "{{ nfs.dir }}"
 echo "{{ nfs.dir }} *(rw,sync,no_root_squash,no_all_squash)" >> /etc/exports
 
 ## Restart Services
-echo "[TASK 2] Restarting Services ..."
+echo "[TASK 4] Restarting Services ..."
 service nfs-kernel-server restart >/dev/null 2>&1

@@ -1,0 +1,9 @@
+---
+- name: Installing NFS client on Worker Nodes
+  apt:
+    name: nfs-common
+    update_cache: yes
+    state: latest
+  delegate_to: "{{ item }}"
+  run_once: true
+  loop: "{{ groups['worker'] }}"

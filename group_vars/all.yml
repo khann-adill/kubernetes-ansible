@@ -2,7 +2,7 @@
 # ansible_user: root
 
 # Kubernetes
-kube_version: v1.19.2
+kube_version: v1.20.4
 token: b0f7b8.8d1767876297d85c
 
 # 1.8.x feature: --feature-gates SelfHosting=true
@@ -17,14 +17,14 @@ service_cidr: "10.96.0.0/12"
 pod_network_cidr: "10.244.0.0/16"
 
 # Supported Network implementation('flannel', 'calico', 'canal')
-network: flannel
+network: calico
 
 # Change this to an appropriate interface, preferably a private network.
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
 network_interface: ""
 
-enable_dashboard: no
-need_to_save_dashboard_token: no
+enable_dashboard: yes
+need_to_save_dashboard_token: yes
 
 # A list of insecure registries you might need to define
 # insecure_registries: []

@@ -16,6 +16,8 @@
 
 - name: Setting up NFS server
   shell: sh "{{ kube_addon_dir }}/install-nfs.sh"
+  notify:
+     - Installing NFS client on Worker Nodes
 
 - name: Copy NFS Helm Chart
   copy:

@@ -1,4 +1,4 @@
 ---
 dependencies:
-     - { role: common/pre-install, packages: ["kubelet", "kubeadm", "kubectl" , "nfs-kernel-server"] }
+     - { role: common/pre-install, packages: ["kubelet", "kubeadm", "kubectl"] }
      - { role: container_runtime } 
