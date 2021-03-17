@@ -28,9 +28,3 @@
      dest: /etc/fstab
      regexp: swap
      state: absent
-
-- include_tasks: docker.yml
-  when: container_runtime == "docker"
-
-- include_tasks: containerd.yml
-  when: container_runtime == "containerd"
