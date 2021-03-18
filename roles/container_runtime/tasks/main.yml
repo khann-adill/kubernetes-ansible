@@ -4,3 +4,6 @@
 
 - include_tasks: containerd.yml
   when: container_runtime == "containerd"
+
+- include_tasks: crio.yml
+  when: container_runtime == "crio"

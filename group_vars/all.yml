@@ -50,17 +50,18 @@ additional_features:
   nfs_dynamic: true
 
 # temporary directory used by additional features
-#tmp_dir: /tmp/kubeadm-ansible-files
 tmp_dir: /opt/k8s
 
 
-#Supported container_runtime: [ docker containerd ]
-container_runtime: containerd
+#Supported container_runtime: [ docker containerd crio]
+container_runtime: crio
 
+#for setting admin.conf 
 k8s_config:
     path: /root
     user: root
     group: root
 
+#nfs dir    
 nfs:
   dir: /nfs-private
