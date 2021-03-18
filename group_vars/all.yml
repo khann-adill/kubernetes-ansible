@@ -22,7 +22,7 @@ pod_network_cidr: "10.244.0.0/16"
 
 #pod_network_cidr: "{{ network_cidr[network] }}"
 
-# Supported Network implementation('flannel', 'calico', 'canal')
+# Supported Network implementation('flannel', 'calico')
 network: calico
 
 # Change this to an appropriate interface, preferably a private network.
