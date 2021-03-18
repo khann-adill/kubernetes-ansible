@@ -15,12 +15,12 @@ kubeadm_opts: ""
 
 service_cidr: "10.96.0.0/12"
 
+pod_network_cidr: "10.244.0.0/16"
+#network_cidr:
+#      flannel: "10.244.0.0/16"
+#      calico: "192.168.0.0/16"
 
-network_cidr:
-      flannel: "10.244.0.0/16"
-      calico: "192.168.0.0/16"
-
-pod_network_cidr: "{{ network_cidr[network] }}"
+#pod_network_cidr: "{{ network_cidr[network] }}"
 
 # Supported Network implementation('flannel', 'calico', 'canal')
 network: calico
