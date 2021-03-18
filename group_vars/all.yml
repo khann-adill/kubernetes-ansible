@@ -14,9 +14,16 @@ kubeadm_opts: ""
 # kubeadm_opts: '--apiserver-cert-extra-sans "k8s.domain.com,kubernetes.domain.com"'
 
 service_cidr: "10.96.0.0/12"
-pod_network_cidr: "10.244.0.0/16"
+
+
+network_cidr:
+      flannel: "10.244.0.0/16"
+      calico: "192.168.0.0/16"
+
+pod_network_cidr: "{{ network_cidr[network] }}"
+
 # Supported Network implementation('flannel', 'calico', 'canal')
-network: flannel
+network: calico
 
 # Change this to an appropriate interface, preferably a private network.
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
@@ -48,7 +55,7 @@ tmp_dir: /opt/k8s
 
 
 #Supported container_runtime: [ docker containerd ]
-container_runtime: docker
+container_runtime: containerd
 
 k8s_config:
     path: /root
