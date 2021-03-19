@@ -48,10 +48,10 @@ $cat /etc/ansible/custom_inv.ini
 
 # This is custom inventory file which will use in setting up k8s cluster
 [master]
-34.**.**.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+34.254.163.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [worker]
-52.**.**.189 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+52.18.236.189 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [kube_cluster:children]
 master
