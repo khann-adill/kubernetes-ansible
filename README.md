@@ -1,24 +1,19 @@
-<h1 align=""> 👋</h1>
-<p>
-  <a href="/" target="_blank">
-    <img alt="Documentation" src="https://github.com/khann-adill/kubernetes-ansible" />
-  </a>
-  <a href="/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://github.com/khann-adill/kubernetes-ansible/blob/main/LICENSE" />
-  </a>
-</p>
+# Kubernetes Ansible
+A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on VM's or AWS EC2.
 
-> Example to build Kubernetes Development Clusters
-
-![Kubernetes](/.github/assets/img/kubernetes-logo-color.png)
-
-<div align=>
-	<img align="right" width="200px" src=/.github/assets/img/crio-stacked-color.png>
-</div> 
-
-
-### 🏠 [Homepage](/)
-
-### ✨ [Demo](/)
-
-## Table of Contents
+Feature list:
+- [x] Support Kubernetes v1.19.0+.
+- [x] Highly available Development Kubernetes cluster.
+- [x] Full of the binaries installation.
+- [x] Kubernetes addons:
+  - [x] Helm.
+  - [x] Metrics Server.
+  - [x] NFS Dynamic Provisioning. 
+  - [x] Kubernetes Dashboard.
+- [x] Support container network:
+  - [x] Calico.
+  - [x] Flannel.
+- [x] Support container runtime:
+  - [x] Docker.
+  - [x] Containerd.
+  - [x] CRI-O.
