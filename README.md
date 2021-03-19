@@ -54,33 +54,44 @@ worker
 ```
 
 ### Variables
+AWS EC2 related Variables, located under /root/kubernetes-ansible/roles/infra/vars/main.yml
+```
+# To change region.
+ec2:
+ region: eu-west-1
+ 
+# To change Master Instance type
+master:
+    vm_type: t2.medium
+# To change no. of worker nodes and it's types
+worker:
+    vm_type: t2.micro
+    vm_count: 1
+```
+
 Set the variables in `group_vars/all.yml` to reflect you need options.
 ```yml
 # overide kubernetes version(default: 1.10.6)
-kube_version: 1.20.4
+kube_version: v1.20.4
 
-# container runtime, supported: docker, containerd, crio
+# Supported Network implementation('flannel', 'calico')
+network: calico
+
+# Supported container_runtime: [ docker containerd crio]
 container_runtime: crio
 
-# container network, supported: calico, flannel.
-cni_enable: true
-container_network: calico
-cni_iface: ''
+# Additional feature to install
+additional_features:
+  helm: false
+  nfs_dynamic: true
+  metric_server: true
+# Dashboard
+enable_dashboard: yes
+need_to_save_dashboard_token: yes
 
-# highly available variables
-vip_interface: ''
-vip_address: 172.16.35.9
-
-# etcd variables
-etcd_iface: ''
-
-# kubernetes extra addons variables
-enable_dashboard: true
-enable_logging: false
-enable_monitoring: false
-enable_ingress: false
-enable_metric_server: true
-
+# NFS Directory
+nfs:
+  dir: /nfs-private
 ```
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
