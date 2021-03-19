@@ -43,7 +43,7 @@ $ sh py-ansible.sh
  
 ### Key Features
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
-```
+```ini
 $cat /etc/ansible/custom_inv.ini
 
 # This is custom inventory file which will use in setting up k8s cluster
