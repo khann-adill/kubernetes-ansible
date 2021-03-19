@@ -1,4 +1,4 @@
-# Kubernetes Ansible
+# Kubernetes Ansible AWS EC2
 A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on VM's or AWS EC2.
 
 Feature list:
