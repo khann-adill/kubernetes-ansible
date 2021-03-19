@@ -1,0 +1,9 @@
+language: python
+os: linux
+sudo: required
+services:
+  - docker
+python:
+  - "2.7"
+script:
+  - ansible-playbook main.yml -vvv --syntax-check
