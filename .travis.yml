@@ -4,6 +4,8 @@ sudo: required
 services:
   - docker
 python:
-  - "2.7"
+  - "3.8.5"
+before_install:
+  - pip install -U ansible
 script:
   - ansible-playbook -i custom_inv.ini site.yml -vvv --syntax-check
