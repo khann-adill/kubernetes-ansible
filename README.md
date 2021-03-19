@@ -111,7 +111,7 @@ Vault password:
 
 ## Verify cluster
 Verify that you have deployed the cluster, check the cluster as following commands:
-```sh
+```yml
 $ kubectl get nodes -o wide
 
 NAME      STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
