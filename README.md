@@ -23,8 +23,8 @@ Verify that you have deployed the cluster, check the cluster as following comman
 ```sh
 $ kubectl -n kube-system get po,svc
 
-NAME      STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION   CONTAINER-RUNTIME
-kmaster   Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27    <none>        Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
-kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91   <none>        Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+NAME      STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
+kmaster   Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
 ...
 ```
