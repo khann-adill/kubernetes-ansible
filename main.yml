@@ -20,7 +20,7 @@
   gather_facts: false
   become: yes
   tasks:
-    - name: "Helm role"
+    - name: "Helm Role"
       include_role:
             name: k8s-addon/helm
       when: additional_features.helm | bool
@@ -32,8 +32,14 @@
       when: enable_dashboard | bool
       run_once: yes
 
-    - name: "nfs"
+    - name: "NFS"
       include_role:
            name: k8s-addon/nfs-provisioner
       when: additional_features.nfs_dynamic | bool
+      run_once: yes
+
+    - name: "Metric Server"
+      include_role:
+            name: k8s-addon/metric-server
+      when: additional_features.metric_server | bool
       run_once: yes
