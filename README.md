@@ -26,7 +26,7 @@ Prerequisites:
 * Clone this Repo
 * Need to steup Ansible on local machine.
 ```
-$ ./py-ansible.sh
+$ sh py-ansible.sh
 [❗️Updating & Installing Python Latest Version ]
 [❗️Installing Ansible ]
 [✅ successfully Installed Python3 & Ansible ]
@@ -43,7 +43,7 @@ $ ./py-ansible.sh
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
 ```sh
-$ ./aws-k8s.sh
+$ sh aws-k8s.sh
 Vault password:
 ...
 TASK [k8s-addon/metric-server : Deploying Metric Server] ********************************Friday 19 March 2021  10:14:34 +0000 (0:00:29.398)       0:10:36.280 **********
