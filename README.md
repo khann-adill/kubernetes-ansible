@@ -126,7 +126,7 @@ infra : Unzipping it -----------------------------------------------------------
 container_runtime : Add CRIO stable repo ------------------------------------------------------------------------------------------------------------------ 7.08s
 
 ```
-
+![alt tag](https://github.com/khann-adill/kubernetes-ansible/blob/main/script/ansi%20status%20k8s.PNG)
 
 ## Verify cluster
 Verify that you have deployed the cluster, check the cluster as following commands:
