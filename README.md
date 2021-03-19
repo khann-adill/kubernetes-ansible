@@ -41,6 +41,7 @@ $ sh py-ansible.sh
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
 ```
 $cat /etc/ansible/custom_inv.ini
+
 # This is custom inventory file which will use in setting up k8s cluster
 [master]
 34.**.**.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
@@ -63,6 +64,7 @@ ec2:
 # To change Master Instance type
 master:
     vm_type: t2.medium
+    
 # To change no. of worker nodes and it's types
 worker:
     vm_type: t2.micro
@@ -85,6 +87,7 @@ additional_features:
   helm: false
   nfs_dynamic: true
   metric_server: true
+  
 # Dashboard
 enable_dashboard: yes
 need_to_save_dashboard_token: yes
