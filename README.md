@@ -123,7 +123,9 @@ kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 
 
 Give a ⭐️ if this project helped you!
 
-### Connect with me:
+## Author
+
+👤 **Adil Abdullah Khan**
 
 [<img align="left" alt="LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
 [<img align="left" alt="facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.3.0/icons/facebook.svg" />][facebook]
