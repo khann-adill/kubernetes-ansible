@@ -36,10 +36,20 @@ $ sh py-ansible.sh
 ```
 * Create AWS IAM User with AdministratorAccess Permissions.
 * Add IAM User Access key and Secret key in roles/infra/vars/cred.yml using Ansible Vault by using below command.
-
- ```sh
- $ ansible-vault edit roles/infra/vars/cred.yml and Add your Access key & Secret key.
+ Add your Access key & Secret key in cred.yml ansible vault.
+ 
+ ```yml
+ $ ansible-vault edit roles/infra/vars/cred.yml
+ Vault password: 123
  ```
+* roles/infra/vars/cred.yml ansible vault password was set to 123
+* To view cred using vault
+```yml
+ansible-vault view cred.yml
+Vault password: 123
+access_key: **********************
+secret_key: **************************
+```
  
 ### Key Features
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
@@ -104,7 +114,7 @@ nfs:
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
 ```sh
 $ sh aws-k8s.sh
-Vault password:
+Vault password: 123
 ```
 
 ![alt tag](https://github.com/khann-adill/kubernetes-ansible/blob/main/script/ansi%20status%20k8s.PNG)
