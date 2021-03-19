@@ -22,7 +22,7 @@ Feature list:
 In this section you will deploy a cluster via AWS EC2.
 
 Prerequisites:
-* For running this ansible role for privisioning and setting up k8s cluster you need: Ubuntu 18.04 or above or RHEL but i have tested on Ubuntu based machine.
+* For running this ansible role for privisioning and setting up k8s cluster you need: Ubuntu 18.04 or above or RHEL but I have tested on Ubuntu based machine.
 * Clone this Repo
 * Need to steup Ansible on local machine.
 ```
@@ -34,9 +34,12 @@ $ ./py-ansible.sh
 * Create AWS IAM User with AdministratorAccess Permissions.
 * Add IAM User Access key and Secret key in roles/infra/vars/cred.yml using Ansible Vault by using below command.
  ```
- $ ansible-vault edit roles/infra/vars/cred.yml & Add your key
+ $ ansible-vault edit roles/infra/vars/cred.yml and Add your Access key & Secret key.
  ```
  
+## Key Feactures
+
+
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
 ```sh
