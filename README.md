@@ -42,7 +42,7 @@ $ sh py-ansible.sh
  $ ansible-vault edit roles/infra/vars/cred.yml
  Vault password: 123
  ```
-* roles/infra/vars/cred.yml ansible vault password was set to 123
+* `roles/infra/vars/cred.yml` ansible vault password was set to `123`
 * To view cred using vault
 ```yml
 ansible-vault view cred.yml
@@ -111,7 +111,7 @@ nfs:
   dir: /nfs-private
 ```
 ### Provision AWS EC2 and deploy a Kubernetes cluster
-If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
+If everything is ready, just run `./aws-k8s.sh` to provision ec2 and deploy the cluster on it:
 ```sh
 $ sh aws-k8s.sh
 Vault password: 123
