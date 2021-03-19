@@ -119,3 +119,20 @@ kmaster   Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 
 kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
 ...
 ```
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+### Connect with me:
+
+[<img align="left" alt="LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
+[<img align="left" alt="facebook" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@3.3.0/icons/facebook.svg" />][facebook]
+[<img align="left" alt="Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
+[<img align="left" alt="Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
+
+<br />
+
+[facebook]: https://www.facebook.com/adilabdullah.khan.393
+[twitter]: https://twitter.com/adilkhan220496
+[instagram]: https://www.instagram.com/khann_adill/
+[linkedin]: https://www.linkedin.com/in/adil-abdullah-khan-682075140/
