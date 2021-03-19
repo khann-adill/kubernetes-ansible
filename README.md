@@ -55,8 +55,8 @@ worker
 ```
 
 ### Variables
-AWS EC2 related Variables, located under /root/kubernetes-ansible/roles/infra/vars/main.yml
-```
+AWS EC2 related Variables, located under kubernetes-ansible/roles/infra/vars/main.yml
+```yml
 # To change region.
 ec2:
  region: eu-west-1
