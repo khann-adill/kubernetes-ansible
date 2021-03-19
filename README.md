@@ -37,8 +37,21 @@ $ sh py-ansible.sh
  $ ansible-vault edit roles/infra/vars/cred.yml and Add your Access key & Secret key.
  ```
  
-## Key Feactures
+### Key Feactures
+Provisioning will create a custom ansible inventory file for setting up k8s cluster.
+```
+$cat /etc/ansible/custom_inv.ini
+# This is custom inventory file which will use in setting up k8s cluster
+[master]
+34.**.**.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
+[worker]
+52.**.**.189 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+
+[kube_cluster:children]
+master
+worker
+```
 
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
