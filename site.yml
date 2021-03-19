@@ -1,0 +1,41 @@
+---
+- hosts: master
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: k8s/master }
+    - { role: cni }
+
+- hosts: worker
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: k8s/worker }
+
+- hosts: master
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: "Helm Role"
+      include_role:
+            name: k8s-addon/helm
+      when: additional_features.helm | bool
+      run_once: yes 
+
+    - name: "Dashboard"
+      include_role:
+           name: k8s-addon/dashboard
+      when: enable_dashboard | bool
+      run_once: yes
+
+    - name: "NFS"
+      include_role:
+           name: k8s-addon/nfs-provisioner
+      when: additional_features.nfs_dynamic | bool
+      run_once: yes
+
+    - name: "Metric Server"
+      include_role:
+            name: k8s-addon/metric-server
+      when: additional_features.metric_server | bool
+      run_once: yes

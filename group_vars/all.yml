@@ -44,7 +44,7 @@ kube_addon_dir: /etc/kubernetes/addon
 
 # Additional feature to install
 additional_features:
-  helm: false
+  helm: true
   nfs_dynamic: true
   metric_server: true
 

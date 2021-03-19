@@ -6,4 +6,4 @@ services:
 python:
   - "2.7"
 script:
-  - ansible-playbook main.yml -vvv --syntax-check
+  - ansible-playbook -i custom_inv.ini site.yml -vvv --syntax-check
