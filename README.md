@@ -37,7 +37,7 @@ $ sh py-ansible.sh
  $ ansible-vault edit roles/infra/vars/cred.yml and Add your Access key & Secret key.
  ```
  
-### Key Feactures
+### Key Features
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
 ```
 $cat /etc/ansible/custom_inv.ini
@@ -53,6 +53,35 @@ master
 worker
 ```
 
+### Variables
+Set the variables in `group_vars/all.yml` to reflect you need options.
+```yml
+# overide kubernetes version(default: 1.10.6)
+kube_version: 1.20.4
+
+# container runtime, supported: docker, containerd, crio
+container_runtime: crio
+
+# container network, supported: calico, flannel.
+cni_enable: true
+container_network: calico
+cni_iface: ''
+
+# highly available variables
+vip_interface: ''
+vip_address: 172.16.35.9
+
+# etcd variables
+etcd_iface: ''
+
+# kubernetes extra addons variables
+enable_dashboard: true
+enable_logging: false
+enable_monitoring: false
+enable_ingress: false
+enable_metric_server: true
+
+```
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws.sh` to provision ec2 and deploy the cluster on it:
 ```sh
