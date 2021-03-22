@@ -1,0 +1,6 @@
+---
+- include_vars: ../../../../group_vars/cred.yml
+- include: getting_vpc_subnetid.yml
+- include: ec2-worker.yml
+- include: ssh-check.yml 
+- include: refresh_inventory.yml

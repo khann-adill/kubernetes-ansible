@@ -10,11 +10,6 @@
     vpc_subnet_id: "{{ vpc_subid }}"
     assign_public_ip: "{{ ec2.worker.need_public_ip }}"
     region: "{{ ec2.region }}"
-    user_data: |
-               #!/bin/bash
-               apt update -y
-               apt install curl -y
-               curl https://raw.githubusercontent.com/khann-adill/play-with-kubectl/master/kubernetes-installation/set-hostname-kworker.sh | bash
     state: "{{ ec2.worker.vm_state }}"
     aws_access_key: "{{ access_key }}"
     aws_secret_key: "{{ secret_key }}"
@@ -36,5 +31,5 @@
   lineinfile:
         line: "{{ item.public_ip }} ansible_ssh_private_key_file={{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}"
         dest: "{{ inventory.inv_location }}/{{ inventory.inv_name }}"
-        insertafter: '\[worker\]'
+        insertafter: '\[addnode\]'
   loop: "{{ worker_info['instances'] }}"

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  roles:
+    - { role: infra/k8s-addnode }
+
+- hosts: addnode
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: k8s/worker }

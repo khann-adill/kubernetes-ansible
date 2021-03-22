@@ -1,0 +1,35 @@
+---
+- name: Launching Worker Node
+  ec2:
+    key_name: "{{ ec2.aws_key.name }}"
+    instance_type: "{{ ec2.worker.vm_type }}"
+    image: "{{ ec2.vm_image[ec2.region] }}"
+    wait: "{{ ec2.worker.need_to_wait }}"
+    group: "{{ ec2.security_group.group_name }}"
+    count: "{{ ec2.worker.vm_count }}"
+    vpc_subnet_id: "{{ vpc_subid }}"
+    assign_public_ip: "{{ ec2.worker.need_public_ip }}"
+    region: "{{ ec2.region }}"
+    state: "{{ ec2.worker.vm_state }}"
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    volumes:
+        - device_name: "{{ ec2.worker.volume.volume_device_name }}"
+          volume_type: "{{ ec2.worker.volume.volume_type }}"
+          volume_size: "{{ ec2.worker.volume.volume_size }}"
+          delete_on_termination: "{{ ec2.worker.volume.volume_termination }}"
+    instance_tags:
+          Name: "{{ ec2.worker.vm_tag }}"
+  register: worker_info
+
+- name: "Setting  WorkerNodes Public IP as variable"
+  set_fact:
+      worker_ip: "{{ item.public_ip }}"
+  loop: "{{ worker_info['instances'] }}"
+
+- name: Adding WorkerNode to Inventory file
+  lineinfile:
+        line: "{{ item.public_ip }} ansible_ssh_private_key_file={{ ec2.ssh_key.key_path }}/{{ ec2.ssh_key.key_name }}"
+        dest: "{{ inventory.inv_location }}/{{ inventory.inv_name }}"
+        insertafter: '\[worker\]'
+  loop: "{{ worker_info['instances'] }}"

@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   roles:
-    - { role: infra }
+    - { role: infra/k8s-cluster }
 
 - hosts: master
   gather_facts: false

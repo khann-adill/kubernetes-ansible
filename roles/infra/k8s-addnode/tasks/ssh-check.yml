@@ -1,0 +1,11 @@
+---
+- name: SSH connection check for newly added Worker node.
+  block:
+    - name: "Waiting for WorkerNode SSH"
+      wait_for:
+        host: "{{ worker_ip }}"
+        port: 22
+        state: started
+  always:
+     - debug:
+          msg: "SSH connection success on newly added wokernode. Ready for k8s setup"
