@@ -35,17 +35,17 @@ $ sh py-ansible.sh
 [✅ successfully Installed Python3 & Ansible ]
 ```
 * Create AWS IAM User with AdministratorAccess Permissions.
-* Add IAM User Access key and Secret key in roles/infra/vars/cred.yml using Ansible Vault by using below command.
+* Add IAM User Access key and Secret key in group_vars/cred.yml using Ansible Vault by using below command.
  Add your Access key & Secret key in cred.yml ansible vault.
  
  ```yml
- $ ansible-vault edit roles/infra/vars/cred.yml
+ $ ansible-vault edit group_vars/cred.yml
  Vault password: 123
  ```
-* `roles/infra/vars/cred.yml` ansible vault password was set to `123`
+* `group_vars/cred.yml` ansible vault password was set to `123`
 * To view cred using vault
 ```yml
-ansible-vault view cred.yml
+ansible-vault view group_vars/cred.yml
 Vault password: 123
 access_key: **********************
 secret_key: **************************
