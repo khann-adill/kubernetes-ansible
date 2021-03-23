@@ -165,13 +165,13 @@ ip-172-31-91-218   Ready    <none>                 3h25m   v1.20.4   172.31.13.9
 ip-172-31-92-95    Ready    <none>                 1h25m   v1.20.4   172.31.25.10 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
 ...
 ```
-### Decommission the AWS infrastructures
+### Decommission the AWS infrastructures(Clean Up)
 To delete AWS all resouces you need to run below command:
 ```yml
 $ ./main.sh reset
 Vault password: 123
 ```
-## Verify decommission of AWS resources
+## Verify decommission of AWS resources(Clean Up)
 ![Kubernetes](.script/decommission.PNG)
 
 ## Show your support
