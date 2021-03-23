@@ -28,7 +28,7 @@ Prerequisites:
 * Clone this Repo
 * Need to steup Ansible on local machine.
 
-```sh
+```yml
 $ sh py-ansible.sh
 [❗️Updating & Installing Python Latest Version ]
 [❗️Installing Ansible ]
@@ -43,33 +43,45 @@ $ sh py-ansible.sh
  Vault password: 123
  ```
 * `group_vars/cred.yml` ansible vault password was set to `123`
-* To view cred using vault
+* To view group_vars/cred.yml using Ansible Vault
 ```yml
 ansible-vault view group_vars/cred.yml
 Vault password: 123
 access_key: **********************
 secret_key: **************************
 ```
- 
+* To change password for Ansible Vault group_vars/cred.yml
+```
+ansible-vault rekey  group_vars/cred.yml
+Vault password: ***
+New Vault password: ***
+Confirm New Vault password: ***
+Rekey successful
+```
+
 ### Key Features
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
-```ini
+```yml
 $cat /etc/ansible/custom_inv.ini
 
 # This is custom inventory file which will use in setting up k8s cluster
 [master]
-34.254.163.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+3.90.3.247 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [worker]
-52.18.236.189 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+3.89.143.224 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+
+[addnode]
+35.173.233.160 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [kube_cluster:children]
 master
 worker
+addnode
 ```
 
 ### Variables
-AWS EC2 related Variables, located under kubernetes-ansible/roles/infra/vars/main.yml
+AWS EC2 related Variables, located under group_vars/all.yml
 ```yml
 # To change region.
 ec2:
@@ -113,7 +125,7 @@ nfs:
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws-k8s.sh` to provision ec2 and deploy the cluster on it:
 ```sh
-$ sh aws-k8s.sh
+$ ./main.sh initcluster
 Vault password: 123
 ```
 
