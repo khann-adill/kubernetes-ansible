@@ -136,11 +136,36 @@ Verify that you have deployed the cluster, check the cluster as following comman
 ```yml
 $ kubectl get nodes -o wide
 
-NAME      STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
-kmaster   Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
-kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+NAME               STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
+kmaster            Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+ip-172-31-91-218   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
 ...
 ```
+
+### Adding additional worker nodes to existing k8s cluster
+Need to specific how many no. of worker nodes you want to add in group_vars/all.yml
+```yml
+# Specify the number of worker node you want to add in existing k8s cluster
+addnode: 1
+```
+And run below command:
+```sh
+$ ./main.sh addnode
+Vault password: 123
+```
+
+## Verify cluster after adding additional worker node
+Verify that you have added worker nodes, check the cluster as following commands:
+```yml
+$ kubectl get nodes -o wide
+
+NAME               STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
+kmaster            Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+ip-172-31-91-218   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+`ip-172-31-92-95   Ready    <none>                 1h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1`
+...
+```
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
