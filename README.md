@@ -28,48 +28,60 @@ Prerequisites:
 * Clone this Repo
 * Need to steup Ansible on local machine.
 
-```sh
+```yml
 $ sh py-ansible.sh
 [❗️Updating & Installing Python Latest Version ]
 [❗️Installing Ansible ]
 [✅ successfully Installed Python3 & Ansible ]
 ```
 * Create AWS IAM User with AdministratorAccess Permissions.
-* Add IAM User Access key and Secret key in roles/infra/vars/cred.yml using Ansible Vault by using below command.
+* Add IAM User Access key and Secret key in group_vars/cred.yml using Ansible Vault by using below command.
  Add your Access key & Secret key in cred.yml ansible vault.
  
  ```yml
- $ ansible-vault edit roles/infra/vars/cred.yml
+ $ ansible-vault edit group_vars/cred.yml
  Vault password: 123
  ```
-* `roles/infra/vars/cred.yml` ansible vault password was set to `123`
-* To view cred using vault
+* `group_vars/cred.yml` ansible vault password was set to `123`
+* To view group_vars/cred.yml using Ansible Vault
 ```yml
-ansible-vault view cred.yml
+ansible-vault view group_vars/cred.yml
 Vault password: 123
 access_key: **********************
 secret_key: **************************
 ```
- 
+* To change password for Ansible Vault group_vars/cred.yml
+```
+ansible-vault rekey  group_vars/cred.yml
+Vault password: ***
+New Vault password: ***
+Confirm New Vault password: ***
+Rekey successful
+```
+
 ### Key Features
 Provisioning will create a custom ansible inventory file for setting up k8s cluster.
-```ini
+```yml
 $cat /etc/ansible/custom_inv.ini
 
 # This is custom inventory file which will use in setting up k8s cluster
 [master]
-34.254.163.150 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+3.90.3.247 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [worker]
-52.18.236.189 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+3.89.143.224 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
+
+[addnode]
+35.173.233.160 ansible_ssh_private_key_file=/etc/ansible/id_rsa_aws
 
 [kube_cluster:children]
 master
 worker
+addnode
 ```
 
 ### Variables
-AWS EC2 related Variables, located under kubernetes-ansible/roles/infra/vars/main.yml
+AWS EC2 related Variables, located under group_vars/all.yml
 ```yml
 # To change region.
 ec2:
@@ -113,7 +125,7 @@ nfs:
 ### Provision AWS EC2 and deploy a Kubernetes cluster
 If everything is ready, just run `./aws-k8s.sh` to provision ec2 and deploy the cluster on it:
 ```sh
-$ sh aws-k8s.sh
+$ ./main.sh initcluster
 Vault password: 123
 ```
 
@@ -124,11 +136,36 @@ Verify that you have deployed the cluster, check the cluster as following comman
 ```yml
 $ kubectl get nodes -o wide
 
-NAME      STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
-kmaster   Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
-kworker   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+NAME               STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
+kmaster            Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+ip-172-31-91-218   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
 ...
 ```
+
+### Adding additional worker nodes to existing k8s cluster
+Need to specific how many no. of worker nodes you want to add in group_vars/all.yml
+```yml
+# Specify the number of worker node you want to add in existing k8s cluster
+addnode: 1
+```
+And run below command:
+```sh
+$ ./main.sh addnode
+Vault password: 123
+```
+
+## Verify cluster after adding additional worker node
+Verify that you have added worker nodes, check the cluster as following commands:
+```yml
+$ kubectl get nodes -o wide
+
+NAME               STATUS   ROLES                  AGE     VERSION   INTERNAL-IP    OS-IMAGE           KERNEL-VERSION   CONTAINER-RUNTIME
+kmaster            Ready    control-plane,master   3h28m   v1.20.4   172.31.4.27  Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+ip-172-31-91-218   Ready    <none>                 3h25m   v1.20.4   172.31.13.91 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+ip-172-31-92-95    Ready    <none>                 1h25m   v1.20.4   172.31.25.10 Ubuntu 20.04.2 LTS   5.4.0-1038-aws   cri-o://1.20.1
+...
+```
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
