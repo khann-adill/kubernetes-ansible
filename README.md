@@ -99,13 +99,13 @@ worker:
 
 Set the variables in `group_vars/all.yml` to reflect you need options.
 ```yml
-# kube_version [ v1.20.4, v1.19.2]
+# kube_version('v1.20.4', 'v1.19.2')
 kube_version: v1.20.4
 
 # Supported Network implementation('flannel', 'calico')
 network: calico
 
-# Supported container_runtime: [ docker containerd crio]
+# Supported container_runtime: ('docker', 'containerd', 'crio')
 container_runtime: crio
 
 # Additional feature to install
