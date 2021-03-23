@@ -4,5 +4,5 @@
   ignore_errors: true
   register: remove_sg
   until: remove_sg.rc == 0
-  retries: 5
+  retries: 7
   delay: 3

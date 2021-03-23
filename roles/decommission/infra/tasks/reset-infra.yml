@@ -1,4 +1,18 @@
 ---
+- name: Getting AWS cli 
+  block:
+    - name: Getting AWS CLI  binary file
+      get_url:
+          url: "{{ ec2.aws_cli.cli_url }}" 
+          dest: "{{ ec2.temp_dir }}/awscli.zip"
+          force_basic_auth: yes
+
+    - name: Unzipping it
+      unarchive:
+           src: "{{ ec2.temp_dir }}/awscli.zip"
+           dest: "{{ ec2.temp_dir }}"
+           remote_src: yes
+
 - name: Deleting Master node
   block:
     - name: Getting Masternode Instance ID
