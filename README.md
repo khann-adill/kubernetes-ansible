@@ -171,6 +171,8 @@ To delete AWS all resouces you need to run below command:
 $ ./main.sh reset
 Vault password: 123
 ```
+## Verify decommission of AWS resources
+![Kubernetes](.script/decommission.PNG)
 
 ## Show your support
 
