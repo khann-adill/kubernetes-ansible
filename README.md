@@ -117,7 +117,7 @@ $ sh aws-k8s.sh
 Vault password: 123
 ```
 
-![alt tag](https://github.com/khann-adill/kubernetes-ansible/blob/main/script/ansi%20status%20k8s.PNG)
+![alt tag](https://github.com/khann-adill/kubernetes-ansible/blob/main/.script/ansi%20status%20k8s.PNG)
 
 ## Verify cluster
 Verify that you have deployed the cluster, check the cluster as following commands:
