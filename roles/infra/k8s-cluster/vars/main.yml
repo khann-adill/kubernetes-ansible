@@ -1,6 +1,6 @@
 ---
 ec2:
- region: eu-west-1
+ region: us-east-1
  vm_image: 
    us-east-1: ami-042e8287309f5df03
    us-east-2: ami-08962a4068733a2b6
@@ -51,7 +51,7 @@ ec2:
       volume_termination: true
  worker:
     vm_type: t2.micro
-    vm_count: 2
+    vm_count: 1
     vm_protection: no
     vm_state: present
     vm_tag: WorkerNode

@@ -6,7 +6,8 @@
     image: "{{ ec2.vm_image[ec2.region] }}"
     wait: "{{ ec2.worker.need_to_wait }}"
     group: "{{ ec2.security_group.group_name }}"
-    count: "{{ ec2.worker.vm_count }}"
+    count: 1
+    #count: "{{ ec2.worker.vm_count }}"
     vpc_subnet_id: "{{ vpc_subid }}"
     assign_public_ip: "{{ ec2.worker.need_public_ip }}"
     region: "{{ ec2.region }}"
