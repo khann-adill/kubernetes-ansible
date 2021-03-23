@@ -169,6 +169,7 @@ ip-172-31-92-95    Ready    <none>                 1h25m   v1.20.4   172.31.25.1
 To delete AWS all resouces you need to run below command:
 ```json
 $ ./main.sh reset
+Do you want to decommission the AWS resources(y/n):y
 Vault password: 123
 ```
 ## Verify decommission of AWS resources(Clean Up)
