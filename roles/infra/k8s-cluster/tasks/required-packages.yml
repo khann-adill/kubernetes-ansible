@@ -13,7 +13,7 @@
     - "'No' in pip.stderr"
     - ansible_os_family == "Debian"
 
-- name: Installing AWS module dependency BOTO and BOTO3
+- name: Installing AWS module dependency BOTO and BOTO3(Debian)
   when: ansible_os_family == "Debian"
   pip:
     name:
@@ -21,12 +21,12 @@
       - boto
     state: present
 
-- name: Installing AWS module dependency BOTO and BOTO3
+- name: Installing AWS module dependency BOTO and BOTO3(RedHat)
   when: ansible_os_family == "RedHat"
   pip:
     name:
       - boto3
-        #      - boto
+      - boto
     state: present
 
 - name: Installing Required Utils for provisioning
