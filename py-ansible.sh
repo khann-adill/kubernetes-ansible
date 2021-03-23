@@ -10,7 +10,7 @@ then
 
 elif [[ $os_name == "Red Hat Enterprise Linux" ]]
 then
-        sudo yum update && sudo yum install python3 ansible >/dev/null 2>&1
+        sudo yum update -y && sudo yum install python3 ansible -y >/dev/null 2>&1
 else
         echo "[❌No Distro is unsupported by this script ]❌"
 fi
