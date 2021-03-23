@@ -99,7 +99,7 @@ worker:
 
 Set the variables in `group_vars/all.yml` to reflect you need options.
 ```yml
-# overide kubernetes version(default: 1.10.6)
+# kube_version [ v1.20.4, v1.19.2]
 kube_version: v1.20.4
 
 # Supported Network implementation('flannel', 'calico')
