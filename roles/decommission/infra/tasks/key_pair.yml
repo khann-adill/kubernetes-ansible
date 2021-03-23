@@ -1,0 +1,4 @@
+---
+- name: Deleting Security Group
+  shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" "{{ ec2.temp_dir }}"/aws/dist/aws --region={{ ec2.region }} ec2 delete-key-pair --key-name "{{ ec2.aws_key.name }}"
+  ignore_errors: true

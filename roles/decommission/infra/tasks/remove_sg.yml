@@ -1,0 +1,8 @@
+---
+- name: Deleting Security Group
+  shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" "{{ ec2.temp_dir }}"/aws/dist/aws --region={{ ec2.region }} ec2 delete-security-group --group-name "{{ ec2.security_group.group_name }}"
+  ignore_errors: true
+  register: remove_sg
+  until: remove_sg.rc == 0
+  retries: 5
+  delay: 3

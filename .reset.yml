@@ -1,0 +1,13 @@
+---
+- hosts: kube_cluster
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: decommission/k8s }
+
+- hosts: localhost
+  gather_facts: false
+  become: yes
+  roles:
+    - { role: decommission/infra  }
+

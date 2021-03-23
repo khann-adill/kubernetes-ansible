@@ -1,0 +1,5 @@
+---
+- include_vars: ../../../../group_vars/cred.yml
+- include: reset-infra.yml
+- include: remove_sg.yml 
+- include: key_pair.yml
