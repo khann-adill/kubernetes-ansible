@@ -48,7 +48,8 @@ kube_addon_dir: /etc/kubernetes/addon
 additional_features:
   helm: false
   nfs_dynamic: false
-  metric_server: true
+  metric_server: false
+  logging: true
 
 # temporary directory used by additional features
 tmp_dir: /opt/k8s
@@ -119,7 +120,7 @@ ec2:
       volume_size: 12
       volume_termination: true
  worker:
-    vm_type: t2.micro
+    vm_type: t2.medium
     vm_count: 1
     vm_protection: no
     vm_state: present
@@ -129,7 +130,7 @@ ec2:
     volume:
       volume_device_name: /dev/sda1 
       volume_type: gp2
-      volume_size: 10
+      volume_size: 12
       volume_termination: true
 inventory:
     inv_location: /etc/ansible

@@ -1,0 +1,35 @@
+---
+- name: "Create checkout directory"
+  file:
+    path: 
+      - "{{ kube_addon_dir }}"
+      - "{{ kube_addon_dir }}/elk"
+      - "{{ kube_addon_dir }}/kubestate_metric"
+    state: directory
+    mode: 0755
+
+- name: "Copy Logging ELK files to {{ kube_addon_dir }}/elk folder"
+  copy:
+   src: kubernetes-elk/ 
+   dest: "{{ kube_addon_dir }}/elk/"
+   mode: 0755
+   remote_src: no
+- name: "Copy Kube State Metric files to {{ kube_addon_dir }}/kubestate_metric"
+  copy:
+    src: kube-state-metrics/
+    dest: "{{ kube_addon_dir }}/kubestate_metric/"
+    mode: 0755
+    remote_src: no
+
+- name: Deploying Kube State Metric and ELK
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ item }}"
+  with_items:
+     - "{{ kube_addon_dir }}/elk/"
+     - "{{ kube_addon_dir }}/kubestate_metric/"
+  run_once: true
+  retries: 5
+  delay: 3
+
+- debug:
+     msg: "Kibana Dashboard available on http:{{ groups['worker'][0] }}:31336"
+
