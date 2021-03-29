@@ -1,7 +1,7 @@
 # Kubernetes Ansible AWS EC2 <img align="left" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/aws.png"/> <img align="left" alt="Unix" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/Ansible.png" />
 
 ![Kubernetes](.script/kubernetes-logo-color.png)
-A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on VM's or AWS EC2.
+A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on AWS EC2.
 
 Feature list:
 - [x] Support Kubernetes v1.19.0+.
@@ -131,7 +131,7 @@ $ ./main.sh initcluster
 Vault password: 123
 ```
 
-![alt tag](https://github.com/khann-adill/kubernetes-ansible/blob/main/.script/ansi%20status%20k8s.PNG)
+![Kubernetes](.script/ansi%20status%20k8s.PNG)
 
 ## Verify cluster
 Verify that you have deployed the cluster, check the cluster as following commands:
