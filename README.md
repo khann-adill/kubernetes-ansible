@@ -13,6 +13,7 @@ Feature list:
   - [x] NFS Dynamic Provisioning. 
   - [x] Kubernetes Dashboard.
   - [x] Logging with ELK
+  - [x] Kube State Metric
 - [x] Support container network:
   - [x] Calico.
   - [x] Flannel.
@@ -115,6 +116,7 @@ additional_features:
   nfs_dynamic: true
   metric_server: true
   logging: true
+  kube_state_metric: true
   
 # Dashboard
 enable_dashboard: yes
