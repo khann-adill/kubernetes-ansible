@@ -33,7 +33,7 @@
       mode: 0755
 
 - name: Deploying NFS via. helm 
-  shell: helm install --name nfs-dyamic . --kubeconfig "{{ kubeadmin_config }}"
+  shell: helm install nfs-dyamic . --kubeconfig "{{ kubeadmin_config }}"
   args:
     chdir: "{{ kube_addon_dir }}/nfs-dynamic/"
 
