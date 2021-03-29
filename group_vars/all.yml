@@ -46,11 +46,11 @@ kube_addon_dir: /etc/kubernetes/addon
 
 # Additional feature to install
 additional_features:
-  helm: false
+  helm: true
   nfs_dynamic: false
   metric_server: false
-  logging: true
-  kube_state_metric: true
+  logging: false
+  kube_state_metric: false
 
 # temporary directory used by additional features
 tmp_dir: /opt/k8s
