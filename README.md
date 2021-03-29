@@ -14,6 +14,7 @@ Feature list:
   - [x] Kubernetes Dashboard.
   - [x] Logging with ELK
   - [x] Kube State Metric
+  - [ ] Monitoring
 - [x] Support container network:
   - [x] Calico.
   - [x] Flannel.
