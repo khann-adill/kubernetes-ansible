@@ -31,8 +31,8 @@ network: calico
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
 network_interface: ""
 
-enable_dashboard: no
-need_to_save_dashboard_token: no
+enable_dashboard: true
+need_to_save_dashboard_token: true
 
 # A list of insecure registries you might need to define
 # insecure_registries: []
@@ -50,6 +50,7 @@ additional_features:
   nfs_dynamic: false
   metric_server: false
   logging: true
+  kube_state_metric: true
 
 # temporary directory used by additional features
 tmp_dir: /opt/k8s

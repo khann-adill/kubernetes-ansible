@@ -1,0 +1,3 @@
+---
+dependencies:
+     - { role: k8s-addon/kube-state-metric, when: "not additional_features.kube_state_metric | bool" }

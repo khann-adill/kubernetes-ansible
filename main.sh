@@ -6,6 +6,9 @@ then
 elif [[ $1 == "addnode" ]]
 then
 	ansible-playbook .addnode.yml --ask-vault-pass
+elif [[ $1 == "addon" ]]
+then
+	ansible-playbook .addon.yml 
 elif [[ $1 == "reset" ]]
 then
 	read -p "Do you want to decommission the AWS resources(y/n):" confirm
@@ -16,5 +19,5 @@ then
 		echo "Decommission is cancelled by user"
 	fi
 else
-	echo "Unsupported comannd..! please select from this [ initcluster , addnode , reset ]"
+	echo "Unsupported comannd..! please select from this [ initcluster , addon ,  addnode , reset ]"
 fi

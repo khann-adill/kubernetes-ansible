@@ -1,0 +1,22 @@
+---
+- name: "Create checkout directory"
+  file:
+    path: 
+      - "{{ kube_addon_dir }}"
+      - "{{ kube_addon_dir }}/kubestate_metric"
+    state: directory
+    mode: 0755
+
+- name: "Copy Kube State Metric files to {{ kube_addon_dir }}/kubestate_metric"
+  copy:
+    src: kube-state-metrics/
+    dest: "{{ kube_addon_dir }}/kubestate_metric/"
+    mode: 0755
+    remote_src: no
+
+- name: Deploying Kube State Metric
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/kubestate_metric/"
+  run_once: true
+  retries: 5
+  delay: 3
+
