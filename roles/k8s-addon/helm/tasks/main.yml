@@ -9,7 +9,7 @@
     - name: "Check if Helm is installed"
       shell: command -v helm >/dev/null 2>&1
       register: helm_exists
-       #  ignore_errors: yes
+      no_log: true 
   rescue:
     - name: Install Helm | Get Helm installer
       get_url:

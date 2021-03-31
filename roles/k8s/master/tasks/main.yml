@@ -29,11 +29,9 @@
       copy:
         src: "{{ kubeadmin_config }}"
         dest: "{{ k8s_config.path }}/.kube/config"
-        #owner: "{{ ansible_user | default(ansible_user_id) }}"
         owner: "{{ k8s_config.user }}"
-        #group: "{{ ansible_user | default(ansible_user_id) }}"
         group: "{{ k8s_config.group }}"
-        mode: 0755
+        mode: 0711
         remote_src: true
       when: init_cluster is succeeded
   when: not kubeadm_ca.stat.exists
