@@ -43,13 +43,13 @@ $ sh py-ansible.sh
  
  ```yml
  $ ansible-vault edit group_vars/cred.yml
- Vault password: 123
+ Vault password: 1223
  ```
 * `group_vars/cred.yml` ansible vault password was set to `123`
 * To view group_vars/cred.yml using Ansible Vault
 ```yml
 ansible-vault view group_vars/cred.yml
-Vault password: 123
+Vault password: 1223
 access_key: **********************
 secret_key: **************************
 ```
@@ -131,7 +131,7 @@ nfs:
 If everything is ready, just run `./aws-k8s.sh` to provision ec2 and deploy the cluster on it:
 ```sh
 $ ./main.sh initcluster
-Vault password: 123
+Vault password: 1223
 ```
 
 ![Kubernetes](.script/ansi%20status%20k8s.PNG)
@@ -156,7 +156,7 @@ addnode: 1
 And run below command:
 ```sh
 $ ./main.sh addnode
-Vault password: 123
+Vault password: 1223
 ```
 
 ## Verify cluster after adding additional worker node
@@ -179,7 +179,7 @@ Decommission is cancelled by user
 
 $ ./main.sh reset
 Do you want to decommission the AWS resources(y/n):y
-Vault password: 123
+Vault password: 1223
 ```
 ## Verify decommission of AWS resources(Clean Up)
 ![Kubernetes](.script/decommission.PNG)
