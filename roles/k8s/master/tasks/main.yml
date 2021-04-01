@@ -7,7 +7,7 @@
 - name: Init cluster if needed
   block:
     - name: Reset Kubernetes component
-      shell: "kubeadm reset --force"
+      shell: "kubeadm reset --force --cri-socket=/var/run/{{ container_runtime }}/{{ container_runtime }}.sock"
       register: reset_cluster
 
     - name: Init Kubernetes cluster
@@ -16,6 +16,7 @@
                  --pod-network-cidr {{ pod_network_cidr }} \
                  --token {{ token }} \
                  --token-ttl 0 \
+                 --cri-socket=/var/run/{{ container_runtime }}/{{ container_runtime }}.sock \
                  --ignore-preflight-errors=all
       when: reset_cluster is succeeded
       register: init_cluster
