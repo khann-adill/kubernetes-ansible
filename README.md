@@ -15,6 +15,7 @@ Feature list:
   - [x] Logging with ELK
   - [x] Kube State Metric
   - [ ] Monitoring
+  - [ ] HostPath PV Dynamically provisioning
 - [x] Support container network:
   - [x] Calico.
   - [x] Flannel.
