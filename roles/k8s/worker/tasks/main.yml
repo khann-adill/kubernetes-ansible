@@ -7,7 +7,7 @@
 - name: Join to cluster if needed
   block:
      - name: Reset Kubernetes component
-       shell: "kubeadm reset --force"
+       shell: "kubeadm reset --force --cri-socket=/var/run/{{ container_runtime }}/{{ container_runtime }}.sock"
        register: reset_cluster
 
      - name: Join to Kubernetes cluster
@@ -15,6 +15,7 @@
        shell: |
              kubeadm join --token {{ token }} \
                 --discovery-token-unsafe-skip-ca-verification \
+                --cri-socket=/var/run/{{ container_runtime }}/{{ container_runtime }}.sock \
                 {{ groups['master'][0] }}:6443 \
                 --ignore-preflight-errors=all
        register: join_cluster
