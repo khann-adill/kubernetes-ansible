@@ -9,3 +9,5 @@ before_install:
   - pip install -U ansible
 script:
   - ansible-playbook -i testing-local.ini .cluster.yml -vvv --syntax-check
+after_success:
+    - codecov
