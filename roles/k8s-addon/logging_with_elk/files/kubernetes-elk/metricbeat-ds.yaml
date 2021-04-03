@@ -292,4 +292,3 @@ spec:
         configMap:
           defaultMode: 0600
           name: metricbeat-deployment-modules
-

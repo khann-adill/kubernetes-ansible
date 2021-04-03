@@ -6,6 +6,10 @@ services:
 python:
   - "3.6"
 before_install:
-  - pip install -U ansible
+  - pip install -U yamllint ansible
 script:
+  - yamllint roles
   - ansible-playbook -i testing-local.ini .cluster.yml -vvv --syntax-check
+  - ansible-playbook -i testing-local.ini .addnode.yml -vvv --syntax-check
+  - ansible-playbook -i testing-local.ini .addon.yml -vvv --syntax-check
+  - ansible-playbook -i testing-local.ini .reset.yml -vvv --syntax-check

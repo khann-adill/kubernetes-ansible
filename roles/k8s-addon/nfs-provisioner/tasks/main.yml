@@ -36,4 +36,3 @@
   shell: helm install nfs-dyamic . --kubeconfig "{{ kubeadmin_config }}"
   args:
     chdir: "{{ kube_addon_dir }}/nfs-dynamic/"
-

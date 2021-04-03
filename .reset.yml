@@ -9,5 +9,4 @@
   gather_facts: false
   become: yes
   roles:
-    - { role: decommission/infra  }
-
+    - { role: decommission/infra }

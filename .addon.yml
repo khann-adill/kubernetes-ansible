@@ -38,4 +38,3 @@
             name: k8s-addon/logging_with_elk
       when: additional_features.logging | bool
       run_once: yes
-
