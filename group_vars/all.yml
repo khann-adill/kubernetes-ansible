@@ -46,7 +46,7 @@ kube_addon_dir: /etc/kubernetes/addon
 
 # Additional feature to install
 additional_features:
-  helm: true
+  helm: false
   nfs_dynamic: false
   metric_server: false
   logging: false
@@ -131,7 +131,7 @@ ec2:
     volume:
       volume_device_name: /dev/sda1 
       volume_type: gp2
-      volume_size: 12
+      volume_size: 15
       volume_termination: true
 inventory:
     inv_location: /etc/ansible

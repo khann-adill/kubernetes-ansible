@@ -22,4 +22,3 @@
 
 - debug:
      msg: "Kibana Dashboard available on http://{{ groups['worker'][0] }}:31336"
-

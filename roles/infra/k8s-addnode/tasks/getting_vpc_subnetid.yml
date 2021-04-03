@@ -19,4 +19,3 @@
 
 - set_fact:
       vpc_subid: "{{ vpc_subid.stdout }}"
-

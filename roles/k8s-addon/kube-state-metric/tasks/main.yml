@@ -19,4 +19,3 @@
   run_once: true
   retries: 5
   delay: 3
-

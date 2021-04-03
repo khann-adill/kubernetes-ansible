@@ -23,7 +23,7 @@
     - name: Deleting MasterNode
       shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" "{{ ec2.temp_dir }}"/aws/dist/aws ec2 terminate-instances --region={{ ec2.region }} --instance-ids="{{ item }}"
       with_items:
-            -  "{{ masternode.stdout_lines }}"
+            - "{{ masternode.stdout_lines }}"
       ignore_errors: true
 
 - name: Deleting Worker node
@@ -36,5 +36,5 @@
     - name: Deleting WorkerNode
       shell: AWS_ACCESS_KEY_ID="{{ access_key }}" AWS_SECRET_ACCESS_KEY="{{ secret_key }}" "{{ ec2.temp_dir }}"/aws/dist/aws ec2 terminate-instances --region={{ ec2.region }} --instance-ids="{{ item }}"
       with_items:
-        -  "{{ workernode.stdout_lines }}"
+        - "{{ workernode.stdout_lines }}"
       ignore_errors: true
