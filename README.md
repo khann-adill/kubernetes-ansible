@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/khann-adill/kubernetes-ansible.svg?branch=maindev)](https://travis-ci.org/khann-adill/kubernetes-ansible)
+[![Build Status](https://travis-ci.org/khann-adill/kubernetes-ansible.svg?branch=main)](https://travis-ci.org/khann-adill/kubernetes-ansible)
 # Kubernetes Ansible AWS EC2 <img align="left" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/aws.png"/> <img align="left" alt="Unix" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/Ansible.png" />
 
 ![Kubernetes](.script/kubernetes-logo-color.png)
