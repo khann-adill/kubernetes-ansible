@@ -49,3 +49,9 @@
             name: k8s-addon/logging_with_elk
       when: additional_features.logging | bool
       run_once: yes
+
+    - name: "Dynamic HostPath Persistent Volume Provisioning"
+      include_role:
+            name: k8s-addon/hostpath-dynamic-provisioning
+      when: additional_features.dynamic_hostpath_provisioning | bool
+      run_once: yes
