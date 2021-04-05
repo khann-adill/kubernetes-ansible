@@ -15,8 +15,8 @@ Feature list:
   - [x] Kubernetes Dashboard.
   - [x] Logging with ELK
   - [x] Kube State Metric
+  - [x] HostPath PV Dynamically provisioning
   - [ ] Monitoring
-  - [ ] HostPath PV Dynamically provisioning
 - [x] Support container network:
   - [x] Calico.
   - [x] Flannel.
@@ -47,7 +47,7 @@ $ sh py-ansible.sh
  $ ansible-vault edit group_vars/cred.yml
  Vault password: 1233
  ```
-* `group_vars/cred.yml` ansible vault password was set to `123`
+* `group_vars/cred.yml` ansible vault password was set to `1233`
 * To view group_vars/cred.yml using Ansible Vault
 ```yml
 ansible-vault view group_vars/cred.yml
@@ -120,6 +120,7 @@ additional_features:
   metric_server: true
   logging: true
   kube_state_metric: true
+  dynamic_hostpath_provisioning: true
   
 # Dashboard
 enable_dashboard: yes
