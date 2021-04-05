@@ -1,14 +1,15 @@
----
 apiVersion: v1
 kind: Namespace
 metadata:
   name: local-path-storage
+
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: local-path-provisioner-service-account
   namespace: local-path-storage
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -27,6 +28,7 @@ rules:
   - apiGroups: [ "storage.k8s.io" ]
     resources: [ "storageclasses" ]
     verbs: [ "get", "list", "watch" ]
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -40,6 +42,7 @@ subjects:
   - kind: ServiceAccount
     name: local-path-provisioner-service-account
     namespace: local-path-storage
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -79,14 +82,16 @@ spec:
         - name: config-volume
           configMap:
             name: local-path-config
+
 ---
+
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: local-path
 provisioner: rancher.io/local-path
-volumeBindingMode: Immediate
-reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -99,7 +104,7 @@ data:
             "nodePathMap":[
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/opt/hostpath-provisioner"]
+                    "paths":["/opt/local-path-provisioner"]
             }
             ]
     }
@@ -107,37 +112,38 @@ data:
     #!/bin/sh
     while getopts "m:s:p:" opt
     do
-        case  in
+        case $opt in
             p)
-            absolutePath=args
+            absolutePath=$OPTARG
             ;;
             s)
-            sizeInBytes=args
+            sizeInBytes=$OPTARG
             ;;
             m)
-            volMode=args
+            volMode=$OPTARG
             ;;
         esac
     done
 
-    mkdir -m 0777 -p 
+    mkdir -m 0777 -p ${absolutePath}
   teardown: |-
     #!/bin/sh
     while getopts "m:s:p:" opt
     do
-        case  in
+        case $opt in
             p)
-            absolutePath=args
+            absolutePath=$OPTARG
             ;;
             s)
-            sizeInBytes=args
+            sizeInBytes=$OPTARG
             ;;
             m)
-            volMode=args
+            volMode=$OPTARG
             ;;
         esac
     done
-    rm -rf 
+
+    rm -rf ${absolutePath}
   helperPod.yaml: |-
     apiVersion: v1
     kind: Pod

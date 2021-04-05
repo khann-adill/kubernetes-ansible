@@ -7,8 +7,9 @@
 
 - name: "[HOSTPATH DYNAMIC PV PROVISIONING] Copying Manifest File"
   copy:
-   src: ../files/*
+   src: manifest-files/
    dest: "{{ kube_addon_dir }}/dynamic-hostpath-pv/"
+   remote_src: no
 
 - name: "[HOSTPATH DYNAMIC PV PROVISIONING] Deploying Manifest File"
-  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/dynamic-hostpath-pv/hostdynamamicpv.yml"
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/dynamic-hostpath-pv/local-path-storage.yaml"
