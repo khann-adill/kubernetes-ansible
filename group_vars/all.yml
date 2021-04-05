@@ -51,13 +51,14 @@ additional_features:
   metric_server: false
   logging: false
   kube_state_metric: false
+  dynamic_hostpath_provisioning: true
 
 # temporary directory used by additional features
 tmp_dir: /opt/k8s
 
 
 #Supported container_runtime('docker', 'containerd', 'crio')
-container_runtime: containerd
+container_runtime: crio
 
 #for setting admin.conf 
 k8s_config:

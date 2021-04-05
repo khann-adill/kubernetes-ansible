@@ -1,0 +1,15 @@
+---
+- name: "[HOSTPATH DYNAMIC PV PROVISIONING] Create checkout directory"
+  file:
+    path: "{{ kube_addon_dir }}/dynamic-hostpath-pv"
+    state: directory
+    mode: 0755
+
+- name: "[HOSTPATH DYNAMIC PV PROVISIONING] Copying Manifest File"
+  copy:
+   src: manifest-files/
+   dest: "{{ kube_addon_dir }}/dynamic-hostpath-pv/"
+   remote_src: no
+
+- name: "[HOSTPATH DYNAMIC PV PROVISIONING] Deploying Manifest File"
+  shell: "kubectl --kubeconfig={{ kubeadmin_config }} apply -f {{ kube_addon_dir }}/dynamic-hostpath-pv/local-path-storage.yaml"
