@@ -5,8 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: yaml-lint
+    - name: yaml-lint validation
       uses: ibiqlik/action-yamllint@v3
       with:
-        file_or_dir: roles/
         config_file: .yamllint
+    - uses: actions/checkout@v2
+    - name: Lint Ansible K8s Playbook
+      # replace "master" with any valid ref
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: "roles/*"
