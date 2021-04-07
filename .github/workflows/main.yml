@@ -11,6 +11,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@master
-      args: "-w 306"
       with:
         targets: "roles/*"
