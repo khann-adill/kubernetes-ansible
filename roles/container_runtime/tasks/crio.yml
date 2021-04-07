@@ -1,19 +1,21 @@
+---
 - name: Installing Prerequisites for Kubernetes
-  apt: 
+  apt:
     name: apt-transport-https
     state: present
 
 - name: Configure module for CRIO
-  copy: 
+  copy:
     src: crio.conf
     dest: /etc/modules-load.d/crio.conf
-    mode: 0644
+    mode: '0644'
 
 - name: "sysctl"
-  shell: "sysctl --system"
+  command: "sysctl --system"
+  changed_when: true
 
 - name: Put kubernetes-cri Conf file
-  copy: 
+  copy:
     src: 99-kubernetes-cri.conf
     dest: /etc/sysctl.d/99-kubernetes-cri.conf
     mode: 0644
@@ -21,20 +23,22 @@
 - name: Creates directory 
   file:
     path: /etc/cni/net.d
-    state: directory    
+    state: directory
+    mode: '0644'
 
 - name: Put 10-crio.conf template
   template:
     src: 10-crio.conf.j2
     dest: /etc/cni/net.d/10-crio.conf
-    mode: 777
+    mode: '0644'
 
 - name: Setting OS Variable for CRIO
   shell: cat /etc/os-release  | grep VERSION_ID | sed 's/"//g' | cut -d'=' -f2
   register: os
   changed_when: False
 
-- set_fact:
+- name: Setting facts for OS
+  set_fact:
      OS: "xUbuntu_{{ os.stdout }}"
 
 - name: Getting Version for CRIO
@@ -42,16 +46,17 @@
   register: version
   changed_when: False
 
-- set_fact:
+- name: Setting facts for version
+  set_fact:
      VERSION: "{{ version.stdout }}"
 
 - name: Get CRIO apt-key
-  apt_key: 
+  apt_key:
     url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ OS }}/Release.key
     state: present
 
 - name: Get CRIO apt-key
-  apt_key: 
+  apt_key:
     url: https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ VERSION }}/{{ OS }}/Release.key
     state: present
 
