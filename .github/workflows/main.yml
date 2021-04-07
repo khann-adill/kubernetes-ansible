@@ -11,9 +11,12 @@ jobs:
     # Important: This sets up your GITHUB_WORKSPACE environment variable
     - uses: actions/checkout@v2
 
-    - name: Lint Ansible Playbook
+    - name: Lint Ansible K8s Playbook
       # replace "master" with any valid ref
-      uses: ansible/ansible-lint-action@4e5109d
+      uses: ansible/ansible-lint-action@master
       with:
         targets: "roles/"
+        override-deps: |
+          ansible==2.9
+          ansible-lint==4.2.0
         args: "-q"
