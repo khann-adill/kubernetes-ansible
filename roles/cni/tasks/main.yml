@@ -1,13 +1,15 @@
 ---
 - name: "[CNI] Create Kubernetes Network Directory"
-  file: 
+  file:
      path: "{{ network_dir }}"
      state: directory
+     mode: '0644'
 
 - name: "[CNI] Downloading {{ network }} YAML files"
   template:
        src: "{{ network }}.yml.j2"
        dest: "{{ network_dir }}/{{ network }}.yml"
+       mode: '0644'
 
 - block:
    - name: "[CNI] Check {{ network }} daemonset is working"
