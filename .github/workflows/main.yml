@@ -1,17 +1,11 @@
-name: Ansible Lint
+name: Ansible yamllint
 on: [push, pull_request]
 jobs:
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: yaml-lint validation
+    - name: yaml-lint validation for k8s roles
       uses: ibiqlik/action-yamllint@v3
       with:
         config_file: .yamllint
-    - uses: actions/checkout@v2
-    - name: Lint Ansible K8s Playbook
-      # replace "master" with any valid ref
-      uses: ansible/ansible-lint-action@master
-      with:
-        targets: "roles/*"
