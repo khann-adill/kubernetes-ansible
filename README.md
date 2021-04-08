@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/khann-adill/kubernetes-ansible.svg?branch=main)](https://travis-ci.org/khann-adill/kubernetes-ansible)
 [![Ansible Lint](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://www.python.org/downloads/)
 [![Ansible Lint Rules](https://img.shields.io/badge/Ansible-Lint%20Rules-blue)](https://ansible-lint.readthedocs.io/en/latest/rules.html#rules)
 ![Stars](https://img.shields.io/github/stars/khann-adill/kubernetes-ansible?style=plastic)
 ![Forks](https://img.shields.io/github/forks/khann-adill/kubernetes-ansible?style=plastic)
