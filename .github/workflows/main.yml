@@ -17,5 +17,9 @@ jobs:
        run: |
          python -m pip install --upgrade pip
          pip install ansible ansible-lint
-     - name: Lint playbook
+     - name: Checking deprecations in playbook
        run: ansible-lint -t deprecations roles/*
+     - name: Checking formatting in Playbooks
+       run: ansible-lint -t formatting roles/*
+     - name: Checking Core test of lint in Playbooks
+       run: ansible-lint -t core roles/*
