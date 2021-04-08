@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/khann-adill/kubernetes-ansible.svg?branch=main)](https://travis-ci.org/khann-adill/kubernetes-ansible)
 [![Ansible Lint](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml)
-[![Ansible Lint Rules](https://ansible-lint.readthedocs.io/en/latest/rules.html#rules)]
+[![Ansible Lint Rules](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml/badge.svg?branch=main)](https://ansible-lint.readthedocs.io/en/latest/rules.html#rules)
 # Kubernetes Ansible AWS EC2 <img align="left" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/aws.png"/> <img align="left" alt="Unix" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/Ansible.png" />
 
 ![Kubernetes](.script/kubernetes-logo-color.png)
