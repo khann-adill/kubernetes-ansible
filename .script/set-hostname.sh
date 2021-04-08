@@ -6,7 +6,6 @@
 #       To Run this script:
 #       curl  https://raw.githubusercontent.com/adil1806/play-with-kubectl/master/kubernetes-installation/set-hostname-kworker.sh | bash
 #############################################################################################################################################################
-
 #!/bin/bash
 
 echo "[TASK 1] Setting hostname for this node to Kworker"
