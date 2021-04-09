@@ -31,7 +31,7 @@ network: calico
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
 network_interface: ""
 
-enable_dashboard: false
+enable_dashboard: true
 need_to_save_dashboard_token: true
 
 # A list of insecure registries you might need to define
