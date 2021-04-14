@@ -31,7 +31,7 @@ network: calico
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
 network_interface: ""
 
-enable_dashboard: true
+enable_dashboard: false
 need_to_save_dashboard_token: true
 
 # A list of insecure registries you might need to define
@@ -47,7 +47,7 @@ kube_addon_dir: /etc/kubernetes/addon
 # Additional feature to install
 additional_features:
   helm: false
-  nfs_dynamic: false
+  nfs_dynamic: true
   metric_server: false
   logging: false
   kube_state_metric: false
@@ -58,7 +58,7 @@ tmp_dir: /opt/k8s
 
 
 #Supported container_runtime('docker', 'containerd', 'crio')
-container_runtime: crio
+container_runtime: containerd
 
 #for setting admin.conf 
 k8s_config:
