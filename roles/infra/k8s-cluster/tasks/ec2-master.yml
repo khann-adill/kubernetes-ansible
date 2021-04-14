@@ -15,7 +15,7 @@
                #!/bin/bash
                apt update -y
                apt install curl python-y
-               curl https://raw.githubusercontent.com/khann-adill/play-with-kubectl/master/kubernetes-installation/set-hostname-kmaster.sh | bash
+               curl https://raw.githubusercontent.com/khann-adill/kubernetes-ansible/kubernetes-version-bump/.script/set-hostname-kmaster.sh | bash
     state: "{{ ec2.master.vm_state }}"
     aws_access_key: "{{ access_key }}"
     aws_secret_key: "{{ secret_key }}"
