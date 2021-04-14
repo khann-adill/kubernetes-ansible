@@ -2,7 +2,7 @@
 # ansible_user: root
 
 # Kubernetes
-#kube_version('v1.19.2', 'v1.20.4', 'v1.20.5')
+#kube_version('v1.19.x', 'v1.20.x', 'v1.21.x')
 kube_version: v1.20.5
 token: b0f7b8.8d1767876297d85c
 
@@ -31,7 +31,7 @@ network: calico
 # For example, on DigitalOcean, you would use eth1 as that is the default private network interface.
 network_interface: ""
 
-enable_dashboard: true
+enable_dashboard: false
 need_to_save_dashboard_token: true
 
 # A list of insecure registries you might need to define
