@@ -3,7 +3,7 @@
 
 # Kubernetes
 #kube_version('v1.19.x', 'v1.20.x', 'v1.21.x')
-kube_version: v1.21.0
+kube_version: v1.20.5
 token: b0f7b8.8d1767876297d85c
 
 # 1.8.x feature: --feature-gates SelfHosting=true
@@ -47,7 +47,7 @@ kube_addon_dir: /etc/kubernetes/addon
 # Additional feature to install
 additional_features:
   helm: false
-  nfs_dynamic: true
+  nfs_dynamic: false
   metric_server: false
   logging: false
   kube_state_metric: false
@@ -58,7 +58,7 @@ tmp_dir: /opt/k8s
 
 
 #Supported container_runtime('docker', 'containerd', 'crio')
-container_runtime: containerd
+container_runtime: crio
 
 #for setting admin.conf 
 k8s_config:

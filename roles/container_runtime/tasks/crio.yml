@@ -96,6 +96,12 @@
     dest: /etc/containers/storage.conf
     mode: 0777
 
+- name: Adding the NET_RAW capabilities in CRIO conf file
+  lineinfile:
+       path: /etc/crio/crio.conf
+       line: '        "NET_RAW",'
+       insertafter: .*KILL
+
 - name: Restart CRIO
   systemd:
     state: restarted
