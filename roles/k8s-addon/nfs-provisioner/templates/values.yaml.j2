@@ -1,10 +1,11 @@
+namespace: nfs
 storage_class_name: managed-nfs-storage
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
-nfs_deploy_name: nfs-client-provisioner
+nfs_deploy_name: nfs-subdir-external-provisioner
 saName: nfs-client-provisioner
-nfs_deploy_image: quay.io/external_storage/nfs-client-provisioner:latest
+nfs_deploy_image: gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.2
 vol_name: nfs-client-root
 nfs_server: {{ groups['master'][0] }}
 path: {{ nfs.dir }}
-provisioner: example.com/nfs
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
