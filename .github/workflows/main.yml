@@ -23,3 +23,8 @@ jobs:
        run: ansible-lint -t formatting roles/*
      - name: Checking Core test of lint in Playbooks
        run: ansible-lint -t core roles/*
+     - name: SonarCloud Scan
+       uses: sonarsource/sonarcloud-github-action@master
+       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
