@@ -4,8 +4,11 @@ on:
    branches:
         - main
         - development
+ schedule:
+    - cron: "0 11 * * 1-5"
 jobs:
-  build:
+  test:
+    name: Ansible role Testing
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v1
