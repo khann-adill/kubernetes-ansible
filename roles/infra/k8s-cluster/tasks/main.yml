@@ -1,6 +1,5 @@
 ---
 - include_vars: ../../../../group_vars/cred.yml
-- include: required-packages.yml
 - include: security_group.yml
 - include: ssh_key.yml 
 - include: aws_key_creation.yml
