@@ -39,10 +39,10 @@ Prerequisites:
 * Need to steup Ansible on local machine.
 
 ```yml
-$ sh py-ansible.sh
-[❗️Updating & Installing Python Latest Version ]
-[❗️Installing Ansible ]
-[✅ successfully Installed Python3 & Ansible ]
+$ ./py-ansible.sh
+[Updating & Installing Python Latest Version]
+[Installing Ansible]
+[successfully Installed Python3 & Ansible]
 ```
 * Create AWS IAM User with AdministratorAccess Permissions.
 * Add IAM User Access key and Secret key in group_vars/cred.yml using Ansible Vault by using below command.
