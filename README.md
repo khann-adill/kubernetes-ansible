@@ -6,8 +6,13 @@
 
 # Kubernetes Ansible AWS EC2 <img align="left" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/aws.png"/> <img align="left" alt="Unix" width="30px" src="https://raw.githubusercontent.com/khann-adill/khann-adill/master/Tools_icons/Ansible.png" />
 
+<<<<<<< HEAD
 <img align="left" src="https://github.com/khann-adill/kubernetes-ansible/blob/main/.script/kubernetes-logo-color.png"/>
 A Collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on AWS EC2.
+=======
+<img align="left" width="300px" src="https://github.com/khann-adill/kubernetes-ansible/blob/main/.script/kubernetes-logo-color.png"/>
+A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on AWS EC2.
+>>>>>>> parent of e93249b... Update README.md
 
 Feature list:
 - [x] Support Kubernetes v1.19.0+.
