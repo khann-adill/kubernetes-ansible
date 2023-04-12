@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/khann-adill/kubernetes-ansible.svg?branch=main)](https://travis-ci.org/khann-adill/kubernetes-ansible)
 [![Ansible Lint](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/khann-adill/kubernetes-ansible/actions/workflows/main.yml)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://www.python.org/downloads/)
 [![Ansible Lint Rules](https://img.shields.io/badge/Ansible-Lint%20Rules-blue)](https://ansible-lint.readthedocs.io/en/latest/rules.html#rules)
@@ -10,7 +9,7 @@
 A collection of playbooks for deploying a Kubernetes development cluster onto machines, they are fully automated command to bring up a Kubernetes cluster on AWS EC2.
 
 Feature list:
-- [x] Support Kubernetes v1.19.0+.
+- [x] Support Kubernetes v1.26.0+.
 - [x] Highly available development Kubernetes cluster.
 - [x] Provisioning AWS EC2 Instances
 - [x] Kubernetes addons:
